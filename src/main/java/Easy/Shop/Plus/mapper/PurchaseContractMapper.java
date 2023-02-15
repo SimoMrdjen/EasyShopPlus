@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Component
-@RequiredArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@Component
+//@RequiredArgsConstructor
 public class PurchaseContractMapper {
 
     private CustomerMapper customerMapper;
