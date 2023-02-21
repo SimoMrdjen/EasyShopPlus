@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 
 //@NoArgsConstructor
 //@AllArgsConstructor
-//@Component
-//@RequiredArgsConstructor
+@Component
+@RequiredArgsConstructor
 public class PurchaseContractMapper {
 
-    private CustomerMapper customerMapper;
+    private final CustomerMapper customerMapper;
 
     public PurchaseContract mapCreateDtoToEntity(PurchaseContractDto dto) {
         return new PurchaseContract(

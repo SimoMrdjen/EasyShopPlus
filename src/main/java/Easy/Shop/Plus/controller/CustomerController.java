@@ -25,32 +25,38 @@ public class CustomerController {
 
     @GetMapping
     public List<CustomerDto> getAllCustomers() {
-        return customerService.getAllCustomers();
+        return customerService
+                .getAllCustomers();
     }
 
     @GetMapping(value = "/{id}")
     public CustomerDto getCustomer(@PathVariable(name = "id")Long id) throws Exception {
-        return customerService.getCustomer(id);
+        return customerService
+                .getCustomer(id);
     }
 
     @GetMapping("/like")
     public List<CustomerDto> getCustomerByLastNameLike(@RequestParam String lastNameLike) {
-        return customerService.getCustomersLike(lastNameLike);
+        return customerService
+                .getCustomersLike(lastNameLike);
     }
 
     @PostMapping
     public CustomerDto addCustomer(@Valid @RequestBody CustomerDto customerDto) throws Exception {
-        return customerService.createCustomer(customerDto);
+        return customerService
+                .createCustomer(customerDto);
     }
 
     @PutMapping(value = "/{id}")
     public CustomerDto updateCustomer(@RequestBody CustomerDto customerDto,
                                       @PathVariable(name = "id") Long id) throws Exception {
-        return customerService.updateCustomer(customerDto,id);
+        return customerService
+                .updateCustomer(customerDto,id);
     }
 
     @DeleteMapping(value = "/{id}")
     public void deleteCustomer(@PathVariable(name = "id") Long id) throws Exception {
-        customerService.deleteCustomer(id);
+        customerService
+                .deleteCustomer(id);
     }
 }

@@ -66,6 +66,5 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public void deleteCustomer(Long id) {
-
     }
 }

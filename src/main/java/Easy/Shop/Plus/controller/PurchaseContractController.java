@@ -19,8 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping
-@Table(name = "contracts")
+@RequestMapping(value = "/api/contracts")
 @RequiredArgsConstructor
 public class PurchaseContractController {
 
@@ -28,21 +27,25 @@ public class PurchaseContractController {
 
     @GetMapping(value = "/{id}")
     public PurchaseContractDto getContract(@PathVariable(name = "id") Long id) throws Exception {
-        return service.getContract(id);
+        return service
+                .getContract(id);
     }
 
     @GetMapping
     public List<PurchaseContractDto> getContracts() {
-        return service.getContracts();
+        return service
+                .getContracts();
     }
 
-    @GetMapping("/customer")
-    public List<PurchaseContractDto> getContractsByCustomerId(@RequestParam Long customerId) {
-        return service.getContractsByCustomerId(customerId);
+    @GetMapping("/customer/{id}")
+    public List<PurchaseContractDto> getContractsByCustomerId(@PathVariable(name = "id") Long customerId) {
+        return service
+                .getContractsByCustomerId(customerId);
     }
 
     @PostMapping
     public PurchaseContractDto createContract(@Valid @RequestBody PurchaseContractDto contractDto) {
-        return service.createContract(contractDto);
+        return service
+                .createContract(contractDto);
     }
 }
