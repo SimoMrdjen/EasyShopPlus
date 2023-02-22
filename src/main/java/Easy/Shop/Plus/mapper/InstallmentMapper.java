@@ -3,7 +3,6 @@ package Easy.Shop.Plus.mapper;
 import Easy.Shop.Plus.dto.InstallmentDto;
 import Easy.Shop.Plus.entity.Installment;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,7 +13,7 @@ public class InstallmentMapper {
 
     public Installment mapCreateDtoToEntity(InstallmentDto dto) {
         return new Installment(
-                mapper.mapCreateInstallmentDtoToEntity(dto.getPurchaseContractDto()),
+                mapper.mapDtoToEntity(dto.getPurchaseContractDto()),
                 dto.getInstallmentOrdinal(),
                 dto.getInstallmentAmount(),
                 dto.getMaturityDate()
@@ -24,7 +23,7 @@ public class InstallmentMapper {
     public Installment mapEditDtoToEntity(InstallmentDto dto) {
         return new Installment(
                 dto.getId(),
-                mapper.mapCreateInstallmentDtoToEntity(dto.getPurchaseContractDto()),
+                mapper.mapDtoToEntity(dto.getPurchaseContractDto()),
                 dto.getInstallmentOrdinal(),
                 dto.getInstallmentAmount(),
                 dto.getMaturityDate(),

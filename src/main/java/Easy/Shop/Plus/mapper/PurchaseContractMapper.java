@@ -3,8 +3,6 @@ package Easy.Shop.Plus.mapper;
 
 import Easy.Shop.Plus.dto.PurchaseContractDto;
 import Easy.Shop.Plus.entity.PurchaseContract;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +23,7 @@ public class PurchaseContractMapper {
         );
     }
 
-    public PurchaseContract mapCreateInstallmentDtoToEntity(PurchaseContractDto dto) {
+    public PurchaseContract mapDtoToEntity(PurchaseContractDto dto) {
         return new PurchaseContract(
                 dto.getId(),
                 customerMapper.mapEditCustomerDtoToEntity(dto.getCustomerDto()),
