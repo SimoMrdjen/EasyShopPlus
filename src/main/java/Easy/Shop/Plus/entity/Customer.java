@@ -1,14 +1,7 @@
 package Easy.Shop.Plus.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -49,7 +42,10 @@ public class Customer {
     private String phoneNumber;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Column
+//   @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "id")
     private List<PurchaseContract> purchaseContracts;
 
     public Customer(String lastName, String firstName, String jmbg, String address,

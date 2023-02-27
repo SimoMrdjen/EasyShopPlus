@@ -22,7 +22,11 @@ public class InstallmentService implements IInstallmentService {
 
     @Override
     public List<InstallmentDto> getAll() {
-        return null;
+        return repository
+                .findAll()
+                .stream()
+                .map(mapper::mapGetEntityToDto)
+                .collect(Collectors.toList());
     }
 
     @Override

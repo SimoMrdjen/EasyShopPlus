@@ -57,13 +57,14 @@ class InstallmentRepositoryTest {
     }
 
     @Test
-    void shouldreturnListWhenFindAllByPurchaseContract_Customer_Id() {
+    void shouldReturnListWhenFindAllByPurchaseContract_Customer_Id() {
         assertThat(repository.findAllByPurchaseContractCustomerId(customer1.getId()))
                 .usingDefaultElementComparator()
                 .isEqualTo(List.of(installment1));
+
     }
     @Test
-    void shouldreturnListWhenFindAllByPurchaseContract_Id() {
+    void shouldReturnListWhenFindAllByPurchaseContract_Id() {
         assertThat(repository.findAllByPurchaseContract_Id(purchaseContract1.getId()))
                 .usingDefaultElementComparator()
                 .isEqualTo(List.of(installment1));
