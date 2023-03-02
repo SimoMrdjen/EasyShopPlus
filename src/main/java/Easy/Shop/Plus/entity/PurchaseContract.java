@@ -80,4 +80,8 @@ public class PurchaseContract {
         this.participation = participation;
         this.contractDate = contractDate;
     }
+
+    public Double getInstallmentAmount() {
+        return (this.contractAmount - this.participation) / 3;
+    }
 }

@@ -3,7 +3,7 @@ package Easy.Shop.Plus;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(classes = PlusApplicationTests.class)
 class PlusApplicationTests {
 
 	@Test

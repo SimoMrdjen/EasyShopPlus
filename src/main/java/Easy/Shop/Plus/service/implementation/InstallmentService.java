@@ -1,6 +1,9 @@
 package Easy.Shop.Plus.service.implementation;
 
 import Easy.Shop.Plus.dto.InstallmentDto;
+import Easy.Shop.Plus.entity.Installment;
+import Easy.Shop.Plus.entity.InstallmentOrdinal;
+import Easy.Shop.Plus.entity.PurchaseContract;
 import Easy.Shop.Plus.mapper.InstallmentMapper;
 import Easy.Shop.Plus.repository.InstallmentRepository;
 import Easy.Shop.Plus.service.interfaces.IInstallmentService;
@@ -8,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +44,13 @@ public class InstallmentService implements IInstallmentService {
 
     @Override
     public List<InstallmentDto> getInstallmentsByCustomerId(Long customerId) {
-        return null;
+
+        return repository
+                .findAllByPurchaseContractCustomerId(customerId)
+                .stream()
+                .map(mapper::mapGetEntityToDto)
+                .collect(Collectors.toList());
+
     }
 
     @Override
@@ -48,6 +58,7 @@ public class InstallmentService implements IInstallmentService {
         return repository
                 .findAllByPurchaseContractCustomerId(customerId)
                 .stream()
+                .filter(i -> i.getPaidAmount() == null)
                 .map(mapper::mapGetEntityToDto)
                 .collect(Collectors.toList());
     }
@@ -57,8 +68,27 @@ public class InstallmentService implements IInstallmentService {
         if (!repository.existsById(id)) {
             throw new Exception(INSTALLMENT_NOT_FOUND);
         }
-        var installment = mapper.mapEditDtoToEntity(dto);
+        Installment installment = mapper.mapEditDtoToEntity(dto);
        return mapper.mapGetEntityToDto(repository.save(installment));
+    }
+
+    @Override
+    public List<InstallmentDto> createInstallments(PurchaseContract contractCreated) {
+        Double installmentAmount = contractCreated.getInstallmentAmount();
+        List<Installment> installments =
+                List.of(
+                        new Installment(contractCreated, InstallmentOrdinal.FIRST, installmentAmount,
+                                contractCreated.getContractDate().plusMonths(1) ),
+                        new Installment(contractCreated, InstallmentOrdinal.SECOND, installmentAmount,
+                                contractCreated.getContractDate().plusMonths(2) ),
+                        new Installment(contractCreated, InstallmentOrdinal.THIRD, installmentAmount,
+                                contractCreated.getContractDate().plusMonths(3) )
+                        );
+        return repository
+                .saveAll(installments)
+                .stream()
+                .map(mapper::mapGetEntityToDto)
+                .collect(Collectors.toList());
     }
 }
 

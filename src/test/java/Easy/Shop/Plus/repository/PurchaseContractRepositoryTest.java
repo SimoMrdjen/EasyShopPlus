@@ -47,12 +47,7 @@ class PurchaseContractRepositoryTest {
     @Test
     void shouldReturnContractsWhenFindByCustomerId() throws Exception {
         repository.save(purchaseContract);
-        var id =
-                customerRepository
-                        .findByJmbg(customer.getJmbg())
-                        .orElseThrow(() -> new Exception(""))
-                        .getId();
-        assertThat(repository.findByCustomerId(id))
+        assertThat(repository.findByCustomerId(customer.getId()))
                 .usingRecursiveFieldByFieldElementComparatorIgnoringFields("id")
                 .isEqualTo(List.of(purchaseContract));
     }

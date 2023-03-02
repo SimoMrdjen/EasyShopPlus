@@ -1,9 +1,9 @@
 package Easy.Shop.Plus.service.implementation;
 
 import Easy.Shop.Plus.dto.CustomerDto;
+import Easy.Shop.Plus.dto.InstallmentDto;
 import Easy.Shop.Plus.dto.PurchaseContractDto;
-import Easy.Shop.Plus.entity.Customer;
-import Easy.Shop.Plus.entity.PurchaseContract;
+import Easy.Shop.Plus.entity.*;
 import Easy.Shop.Plus.mapper.PurchaseContractMapper;
 import Easy.Shop.Plus.repository.PurchaseContractRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,10 +36,12 @@ class PurchaseContractServiceTest {
     private final String CONTRACT_NOT_FOUND = "Contract not found";
     private PurchaseContract createContract;
     private PurchaseContractDto createDto;
+    @Mock
+    private InstallmentService installmentService;
 
     @BeforeEach
     void setUp() {
-        service = new PurchaseContractService(mapper, repository);
+        service = new PurchaseContractService(mapper, repository, installmentService);
         customer =  new Customer(1L, "Mrdjen", "Simo",
                 "0206970850101", "Yr",
                 "0205", "Zrenjanin PU",
@@ -100,12 +102,22 @@ class PurchaseContractServiceTest {
 
     @Test
     void shouldCreateContract() {
-        when(mapper.mapGetEntityToDto(contract))
-                .thenReturn(dto);
+        var installmentDto = new InstallmentDto(1L,dto, InstallmentOrdinal.FIRST,
+                20.00, LocalDate.now().plusMonths(1),
+                null,null, null);
+        var installment = new Installment(1L,contract, InstallmentOrdinal.FIRST,
+                20.00, LocalDate.now().plusMonths(1), null,
+                null, null);
+
         when(mapper.mapCreateDtoToEntity(createDto))
                 .thenReturn(createContract);
         when(repository.save(createContract))
                 .thenReturn(contract);
+        when(mapper.mapGetEntityToDto(contract))
+                .thenReturn(dto);
+        when(installmentService.createInstallments(contract))
+                .thenReturn(List.of(installmentDto));
+        dto.setInstallments(List.of(installmentDto));
         assertThat(service.createContract(createDto))
                 .isEqualTo(dto);
     }
