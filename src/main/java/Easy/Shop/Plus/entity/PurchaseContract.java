@@ -55,8 +55,8 @@ public class PurchaseContract {
     private LocalDate contractDate;
 
     @JsonIgnore
-    @OneToMany(mappedBy="purchaseContract", cascade= ALL,
-            fetch = EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy="purchaseContract", cascade= ALL)//,
+            //fetch = EAGER, orphanRemoval = true)
     private List<Installment> installments;
 
     public PurchaseContract(Customer customer,

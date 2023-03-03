@@ -11,6 +11,8 @@ import lombok.ToString;
 
 import java.util.List;
 
+import static jakarta.persistence.CascadeType.ALL;
+
 @Entity
 @Table(name = "customer")
 @AllArgsConstructor
@@ -42,7 +44,7 @@ public class Customer {
     private String phoneNumber;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "customer", cascade = ALL)//, orphanRemoval = true)
     @Column
 //   @OneToMany(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "id")

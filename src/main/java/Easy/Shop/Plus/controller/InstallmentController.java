@@ -4,17 +4,13 @@ import Easy.Shop.Plus.dto.InstallmentDto;
 import Easy.Shop.Plus.service.implementation.InstallmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/installments")
-@Controller
+@RestController
 public class InstallmentController {
 
     private final InstallmentService service;
@@ -31,7 +27,7 @@ public class InstallmentController {
                 .getById(id);
     }
 
-    @GetMapping(value = "/customer/{customerId")
+    @GetMapping(value = "/customer/{customerId}")
     public List<InstallmentDto> getAllUnpaidInstallmentsOfCustomer
             (@PathVariable(name = "customerId") Long customerId) {
         return service
