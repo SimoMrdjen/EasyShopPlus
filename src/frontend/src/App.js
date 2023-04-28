@@ -205,7 +205,7 @@ function App() {
                         showContractForm={showContractForm}
                         setShowContractForm={setShowContractForm}
                            fetchCustomers={fetchCustomers}
-                           customerDto={customer}
+                           customer={customer}
                     />
 
 
