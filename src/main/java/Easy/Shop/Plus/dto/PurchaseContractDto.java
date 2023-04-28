@@ -27,7 +27,7 @@ public class PurchaseContractDto {
     @NotNull
     private Double participation;
     @NotNull
-    private LocalDate contractDate;
+    private LocalDate contractDate = LocalDate.now();
     private List<InstallmentDto> installments;
 
     public PurchaseContractDto(Long id, CustomerDto customer, Double contractAmount, Double participation, LocalDate contractDate) {
