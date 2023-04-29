@@ -9,6 +9,7 @@ import CustomerEditorForm from "./CustomerEditorForm";
 import './App.css';
 import LayoutApp from "./components/LayoutApp";
 import ContractForm from "./ContractForm";
+import ContractForPrint from "./components/ContractForPrint";
 
 const removeCustomer = (customerId, callback) => {
     deleteCustomer(customerId).then(() => {
@@ -37,6 +38,8 @@ function App() {
     const [showDrawer, setShowDrawer] = useState(false);
     const [showEditor, setShowEditor] = useState(false);
     const [showContractForm, setShowContractForm] = useState(false);
+    const [showContractForPrint, setShowContractForPrint] = useState(false);
+
     const[customer, setCustomer] = useState();
 
     const columnsCustomers = //fetchCustomers =>
@@ -175,6 +178,10 @@ function App() {
                 }
         if(customers.length <= 0){
         return <>
+            <ContractForPrint
+                showContractForPrint={showContractForPrint}
+            setShowContractForPrint={setShowContractForPrint}
+            />
                  <CustomerDrawerForm
                       showDrawer={showDrawer}
                       setShowDrawer={setShowDrawer}

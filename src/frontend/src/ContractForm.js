@@ -9,10 +9,11 @@ const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 
 function ContractForm({showContractForm, setShowContractForm,customer,fetchCustomers}) {
+const [customerDto, seCustomerDto] = useState(customer);
         const onCLose = () => setShowContractForm(false);
         const [submitting, setSubmitting] = useState(false);
     const [purchaseContract, setPurchaseContract] = useState({
-        customerDto:customer,
+        customerDto,
         participation: 0, // Default value
         contractAmount: 0 // Default value
     });
@@ -42,7 +43,7 @@ function ContractForm({showContractForm, setShowContractForm,customer,fetchCusto
                 onCLose();
                 successNotification(
                     "Contract successfully created",
-                    ` New contract for ${customer.firstName} ${customer.firstName} was created`
+                    ` New contract for ${customer.firstName} ${customer.lastName} was created`
                 )
                 fetchCustomers();
             }).catch(err => {
@@ -90,10 +91,10 @@ function ContractForm({showContractForm, setShowContractForm,customer,fetchCusto
               hideRequiredMark>
 
             <Row gutter={10}>
-                <p>{`${customer.firstName}       ${customer.lastName} `}
-                    <br/>  JMBG:   {customer.jmbg}
-                    <br/>  Address:   {customer.address} <br/>
-                </p>
+                {showContractForm && <p>      {customer.lastName} </p>}
+                    {/*<br/>  <p> JMBG:   {customer.jmbg} </p>*/}
+                    {/*<br/>   <p>Address:   {customer.address}  </p><br/>*/}
+
             </Row>
 
             <Row gutter={10}>
