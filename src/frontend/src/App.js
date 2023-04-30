@@ -33,15 +33,15 @@ const onSearch = (value) => {
 
 function App() {
 
+    const[customer, setCustomer] = useState();
     const[customers, setCustomers] = useState([]);
     const [fetching, setFetching] = useState(true);
     const [showDrawer, setShowDrawer] = useState(false);
     const [showEditor, setShowEditor] = useState(false);
     const [showContractForm, setShowContractForm] = useState(false);
-    const [showContractForPrint, setShowContractForPrint] = useState(false);
-
-    const[customer, setCustomer] = useState();
-
+    const [showPrint, setShowPrint] = useState(false);
+    const [resContract, setResContract] = useState();
+    const [customerDto, setCustomerDto] = useState();
     const columnsCustomers = //fetchCustomers =>
         [
     {
@@ -170,6 +170,7 @@ function App() {
     useEffect( () => {
         console.log("component is mounted");
         fetchCustomers();
+
            }, []);
 
     const renderCustomers = () => {
@@ -178,10 +179,7 @@ function App() {
                 }
         if(customers.length <= 0){
         return <>
-            <ContractForPrint
-                showContractForPrint={showContractForPrint}
-            setShowContractForPrint={setShowContractForPrint}
-            />
+
                  <CustomerDrawerForm
                       showDrawer={showDrawer}
                       setShowDrawer={setShowDrawer}
@@ -196,6 +194,7 @@ function App() {
                 <Empty/>
                  </>
                 }
+
         return <>
                         <CustomerDrawerForm
                             showDrawer={showDrawer}
@@ -211,9 +210,21 @@ function App() {
                     <ContractForm
                         showContractForm={showContractForm}
                         setShowContractForm={setShowContractForm}
-                           fetchCustomers={fetchCustomers}
-                           customer={customer}
+                        fetchCustomers={fetchCustomers}
+                        customer={customer}
+                        setShowPrint={setShowPrint}
+                        fetchContractFromResponse={ setResContract}
+                        resContract={resContract}
+                        setCustomer={setCustomer}
+                        setCustomerDto={setCustomerDto}
                     />
+                   <ContractForPrint
+                        showPrint={showPrint}
+                       // setShowContractForPrint={setShowContractForPrint}
+                        resContract={resContract}
+                        setShowPrint={setShowPrint}
+
+                 />
 
 
                 <Table

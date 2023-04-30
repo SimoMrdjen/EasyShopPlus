@@ -1,6 +1,6 @@
 import {Drawer, Input, Col, Select, Form, Row, Button, Spin, DatePicker, Space} from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import {createContract} from './client.js';
+import {createContract,extractContract} from './client.js';
 import {useEffect, useState} from 'react';
 import {successNotification, errorNotification} from './Notification.js';
 
@@ -8,16 +8,37 @@ const {Option} = Select;
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 
-function ContractForm({showContractForm, setShowContractForm,customer,fetchCustomers}) {
-const [customerDto, seCustomerDto] = useState(customer);
-        const onCLose = () => setShowContractForm(false);
-        const [submitting, setSubmitting] = useState(false);
+function ContractForm({showContractForm, setShowContractForm,customer,setCustomer, fetchCustomers,
+                          resContract,fetchContractFromResponse,setShowPrint,setCustomerDto
+}) {
+
+      const [submitting, setSubmitting] = useState(false);
+    const onCLose = () => setShowContractForm(false);
+
+
     const [purchaseContract, setPurchaseContract] = useState({
-        customerDto,
-        participation: 0, // Default value
-        contractAmount: 0 // Default value
+        customerDto: customer,
+        participation: 0,
+        contractAmount: 0
     });
 
+// Function to update the customerDto property of the purchaseContract object
+    const updateCustomerDto = (customer) => {
+        // Create a new object for purchaseContract with the updated customerDto property
+        const updatedPurchaseContract = {
+            ...purchaseContract,
+            customerDto: customer
+        };
+
+        // Update the state of purchaseContract with the new object
+        setPurchaseContract(updatedPurchaseContract);
+    }
+
+
+    useEffect(() => {
+        setCustomer(customer);
+        updateCustomerDto(customer);
+    }, [customer]);
         const handleInputChange = (event) => {
             const target = event.target;
             const value = target.type === 'checkbox' ? target.checked : Number(target.value);
@@ -35,16 +56,25 @@ const [customerDto, seCustomerDto] = useState(customer);
         };
 
     const onFinish = () => {
+
         setSubmitting(true);
+       // updateCustomerDto(customer);
+
+        console.log(JSON.stringify(customer, null, 2))
         console.log(JSON.stringify(purchaseContract, null, 2))
         createContract(purchaseContract)
-            .then(() => {
+          . then(res => res.json())
+            .then((data) => {
+               fetchContractFromResponse(data)
                 console.log("Contract created")
+                //console.log("Response" + purchaseContract)
                 onCLose();
                 successNotification(
                     "Contract successfully created",
                     ` New contract for ${customer.firstName} ${customer.lastName} was created`
-                )
+                );
+
+                setShowPrint(true);
                 fetchCustomers();
             }).catch(err => {
             console.log(err);
