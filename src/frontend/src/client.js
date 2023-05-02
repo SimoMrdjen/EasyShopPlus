@@ -54,3 +54,10 @@ export const createContract = contract =>
         method:'POST',
         body:JSON.stringify(contract)
     }).then(checkStatus);
+
+export const extractContract = response => {
+    if (response.status !== 200) {
+        throw new Error("Failed to create contract");
+    }
+    return response.json();
+};

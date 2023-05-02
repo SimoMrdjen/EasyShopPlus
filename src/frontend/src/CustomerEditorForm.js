@@ -1,11 +1,11 @@
 import {Drawer, Input, Col, Select, Form, Row, Button, Spin} from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
+import {LoadingOutlined} from '@ant-design/icons';
 import {editCustomer} from './client.js';
 import {useEffect, useState} from 'react';
 import {successNotification, errorNotification} from './Notification.js';
 
 const {Option} = Select;
-const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+const antIcon = <LoadingOutlined style={{fontSize: 24}} spin/>;
 
 
 function CustomerEditorForm({showEditor, setShowEditor, fetchCustomers, customer}) {
@@ -44,7 +44,7 @@ function CustomerEditorForm({showEditor, setShowEditor, fetchCustomers, customer
     };
 
     return <Drawer
-        title= "Edit"
+        title="Edit"
         destroyOnClose={true}
         width={720}
         onClose={onCLose}
@@ -75,7 +75,7 @@ function CustomerEditorForm({showEditor, setShowEditor, fetchCustomers, customer
                         label="Id"
                         rules={[{required: true}]}
                     >
-                    <Input  />
+                        <Input/>
                     </Form.Item>
                 </Col>
                 <Col span={12}>
@@ -86,7 +86,7 @@ function CustomerEditorForm({showEditor, setShowEditor, fetchCustomers, customer
                         //setFieldValue={customer.lastName}
 
                     >
-                        <Input   />
+                        <Input/>
                     </Form.Item>
                 </Col>
                 <Col span={12}>
@@ -105,7 +105,7 @@ function CustomerEditorForm({showEditor, setShowEditor, fetchCustomers, customer
                     <Form.Item
                         name="jmbg"
                         label="JMBG"
-                        rules={[{required: true  ,message:"Please edit customer JMBG"}]}
+                        rules={[{required: true, message: "Please edit customer JMBG"}]}
                         //value="Something"
                         value="private"
                     >
@@ -171,7 +171,7 @@ function CustomerEditorForm({showEditor, setShowEditor, fetchCustomers, customer
             </Row>
             <Row>
                 <Col span={12}>
-                    <Form.Item >
+                    <Form.Item>
                         <Button type="primary" htmlType="submit">
                             Submit
                         </Button>
@@ -179,7 +179,7 @@ function CustomerEditorForm({showEditor, setShowEditor, fetchCustomers, customer
                 </Col>
             </Row>
             <Row>
-                {submitting && <Spin indicator={antIcon} />}
+                {submitting && <Spin indicator={antIcon}/>}
             </Row>
         </Form>
     </Drawer>
