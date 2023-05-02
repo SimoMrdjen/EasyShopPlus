@@ -1,18 +1,19 @@
 import {Drawer, Input, Col, Select, Form, Row, Button, Spin, DatePicker, Space} from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
-import {createContract,extractContract} from './client.js';
+import {LoadingOutlined} from '@ant-design/icons';
+import {createContract, extractContract} from './client.js';
 import {useEffect, useState} from 'react';
 import {successNotification, errorNotification} from './Notification.js';
 
 const {Option} = Select;
-const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+const antIcon = <LoadingOutlined style={{fontSize: 24}} spin/>;
 
 
-function ContractForm({showContractForm, setShowContractForm,customer,setCustomer, fetchCustomers,
-                          resContract,fetchContractFromResponse,setShowPrint,setCustomerDto
-}) {
+function ContractForm({
+                          showContractForm, setShowContractForm, customer, setCustomer, fetchCustomers,
+                          resContract, fetchContractFromResponse, setShowPrint, setCustomerDto
+                      }) {
 
-      const [submitting, setSubmitting] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
     const onCLose = () => setShowContractForm(false);
 
 
@@ -29,43 +30,40 @@ function ContractForm({showContractForm, setShowContractForm,customer,setCustome
             ...purchaseContract,
             customerDto: customer
         };
-
         // Update the state of purchaseContract with the new object
         setPurchaseContract(updatedPurchaseContract);
     }
-
 
     useEffect(() => {
         setCustomer(customer);
         updateCustomerDto(customer);
     }, [customer]);
-        const handleInputChange = (event) => {
-            const target = event.target;
-            const value = target.type === 'checkbox' ? target.checked : Number(target.value);
-            const name = target.name;
 
-            setPurchaseContract(prevState => ({
-                ...prevState,
-                [name]: value
-            }));
-        };
+    const handleInputChange = (event) => {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : Number(target.value);
+        const name = target.name;
 
-        const handleSubmit = (event) => {
-            event.preventDefault();
-            console.log(purchaseContract);
-        };
+        setPurchaseContract(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(purchaseContract);
+    };
 
     const onFinish = () => {
 
         setSubmitting(true);
-       // updateCustomerDto(customer);
-
         console.log(JSON.stringify(customer, null, 2))
         console.log(JSON.stringify(purchaseContract, null, 2))
         createContract(purchaseContract)
-          . then(res => res.json())
+            .then(res => res.json())
             .then((data) => {
-               fetchContractFromResponse(data)
+                fetchContractFromResponse(data)
                 console.log("Contract created")
                 //console.log("Response" + purchaseContract)
                 onCLose();
@@ -73,22 +71,23 @@ function ContractForm({showContractForm, setShowContractForm,customer,setCustome
                     "Contract successfully created",
                     ` New contract for ${customer.firstName} ${customer.lastName} was created`
                 );
-
                 setShowPrint(true);
                 fetchCustomers();
-            }).catch(err => {
-            console.log(err);
-            err.response.json().then(res => {
-                console.log(res);
-                errorNotification(
-                    "There was an issue",
-                    `${res.message} [${res.status}] [${res.error}]`,
-                    "bottomLeft"
-                )
-            });
-        }).finally(() => {
-            setSubmitting(false);
-        })
+            })
+            .catch(err => {
+                console.log(err);
+                err.response.json().then(res => {
+                    console.log(res);
+                    errorNotification(
+                        "There was an issue",
+                        `${res.message} [${res.status}] [${res.error}]`,
+                        "bottomLeft"
+                    )
+                });
+            })
+            .finally(() => {
+                setSubmitting(false);
+            })
     };
 
     const onFinishFailed = errorInfo => {
@@ -96,7 +95,7 @@ function ContractForm({showContractForm, setShowContractForm,customer,setCustome
     };
 
     return <Drawer
-        title= "New Contract"
+        title="New Contract"
         destroyOnClose={true}
         width={720}
         onClose={onCLose}
@@ -117,13 +116,13 @@ function ContractForm({showContractForm, setShowContractForm,customer,setCustome
         <Form layout="vertical"
               onFinishFailed={onFinishFailed}
               onFinish={onFinish}
-              //initialValues={customerDto}
+            //initialValues={customerDto}
               hideRequiredMark>
 
             <Row gutter={10}>
                 {showContractForm && <p>      {customer.lastName} </p>}
-                    {/*<br/>  <p> JMBG:   {customer.jmbg} </p>*/}
-                    {/*<br/>   <p>Address:   {customer.address}  </p><br/>*/}
+                {/*<br/>  <p> JMBG:   {customer.jmbg} </p>*/}
+                {/*<br/>   <p>Address:   {customer.address}  </p><br/>*/}
 
             </Row>
 
@@ -150,30 +149,18 @@ function ContractForm({showContractForm, setShowContractForm,customer,setCustome
                         label="Participation"
                         rules={[{required: false, message: 'Please enter Participation Amount!'}]}
                     >
-                      <Input placeholder="Participation" type='number'
-                             name="participation"
-                             value={purchaseContract.participation}
-                             onChange={handleInputChange}
-                      />
+                        <Input placeholder="Participation" type='number'
+                               name="participation"
+                               value={purchaseContract.participation}
+                               onChange={handleInputChange}
+                        />
                     </Form.Item>
                 </Col>
             </Row>
 
-            {/*<Row gutter={10}>*/}
-
-            {/*    <Col span={12}>*/}
-            {/*        <Form.Item*/}
-            {/*            label="Contract Date"*/}
-            {/*            name="contractDate"*/}
-            {/*        >*/}
-            {/*            <DatePicker />*/}
-            {/*        </Form.Item>*/}
-            {/*    </Col>*/}
-            {/*</Row>*/}
-
             <Row>
                 <Col span={12}>
-                    <Form.Item >
+                    <Form.Item>
                         <Button type="primary" htmlType="submit">
                             Submit
                         </Button>
@@ -181,7 +168,7 @@ function ContractForm({showContractForm, setShowContractForm,customer,setCustome
                 </Col>
             </Row>
             <Row>
-                {submitting && <Spin indicator={antIcon} />}
+                {submitting && <Spin indicator={antIcon}/>}
             </Row>
         </Form>
     </Drawer>

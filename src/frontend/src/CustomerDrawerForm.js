@@ -1,12 +1,11 @@
 import {Drawer, Input, Col, Select, Form, Row, Button, Spin} from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
+import {LoadingOutlined} from '@ant-design/icons';
 import {addNewCustomer} from './client.js';
 import {useState} from 'react';
 import {successNotification, errorNotification} from './Notification.js';
 
 const {Option} = Select;
-const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
-
+const antIcon = <LoadingOutlined style={{fontSize: 24}} spin/>;
 
 function CustomerDrawerForm({showDrawer, setShowDrawer, fetchCustomers}) {
     const onCLose = () => setShowDrawer(false);
@@ -16,25 +15,28 @@ function CustomerDrawerForm({showDrawer, setShowDrawer, fetchCustomers}) {
         setSubmitting(true)
         console.log(JSON.stringify(customer, null, 2))
         addNewCustomer(customer)
-        .then( () => {
+            .then(() => {
                 console.log("Customer added");
-                 onCLose();
-                 successNotification("Customer successfully added", `${customer.firstName} was added`);
-                 fetchCustomers();
-            }).catch(err => {
-                               console.log(err)
-                               console.log(err);
-                               err.response.json().then(res => {
-                                   console.log(res);
-                                   errorNotification(
-                                       "There was an issue",
-                                       `${res.message} [${res.status}] [${res.error}]`,
-                                       "bottomLeft"
-                                   )
-                               });
-                           }).finally(() => {
-                               setSubmitting(false); })
-           };
+                onCLose();
+                successNotification("Customer successfully added", `${customer.firstName} was added`);
+                fetchCustomers();
+            })
+            .catch(err => {
+                console.log(err)
+                console.log(err);
+                err.response.json().then(res => {
+                    console.log(res);
+                    errorNotification(
+                        "There was an issue",
+                        `${res.message} [${res.status}] [${res.error}]`,
+                        "bottomLeft"
+                    )
+                });
+            })
+            .finally(() => {
+                setSubmitting(false);
+            })
+    };
 
     const onFinishFailed = errorInfo => {
         alert(JSON.stringify(errorInfo, null, 2));
@@ -92,69 +94,67 @@ function CustomerDrawerForm({showDrawer, setShowDrawer, fetchCustomers}) {
                         label="JMBG"
                         rules={[{required: true, message: 'Please enter customer JMBG'}]}
                     >
-                         <Input placeholder="Please enter customer JMBG"/>
+                        <Input placeholder="Please enter customer JMBG"/>
 
                     </Form.Item>
                 </Col>
-               </Row>
-
+            </Row>
             <Row gutter={16}>
                 <Col span={25}>
                     <Form.Item
-                            name="address"
-                            label="Address"
-                            rules={[{required: true, message: 'Please enter customer address'}]}
-                        >
-                      <Input placeholder="Please enter customer address"/>
+                        name="address"
+                        label="Address"
+                        rules={[{required: true, message: 'Please enter customer address'}]}
+                    >
+                        <Input placeholder="Please enter customer address"/>
                     </Form.Item>
-                 </Col>
+                </Col>
             </Row>
-
             <Row gutter={16}>
                 <Col span={8}>
                     <Form.Item
-                            name="brLK"
-                            label="ID Card No"
-                            rules={[{required: true, message: 'Please enter ID card number'}]}
-                        >
-                      <Input placeholder="Please enter ID card number"/>
+                        name="brLK"
+                        label="ID Card No"
+                        rules={[{required: true, message: 'Please enter ID card number'}]}
+                    >
+                        <Input placeholder="Please enter ID card number"/>
                     </Form.Item>
-                 </Col>
+                </Col>
                 <Col span={16}>
                     <Form.Item
-                            name="pu"
-                            label="ID Card Issued By"
-                            rules={[{required: true, message: 'Please enter which police department issued the ID card'}]}
-                        >
-                      <Input placeholder="Please enter which police department issued the ID card"/>
+                        name="pu"
+                        label="ID Card Issued By"
+                        rules={[{required: true, message: 'Please enter which police department issued the ID card'}]}
+                    >
+                        <Input placeholder="Please enter which police department issued the ID card"/>
                     </Form.Item>
-                 </Col>
+                </Col>
             </Row>
             <Row gutter={16}>
                 <Col span={12}>
                     <Form.Item
-                            name="email"
-                            label="Email"
-                            rules={[{required: false, message: 'Please enter customer email'}]}
-                        >
-                      <Input placeholder="Please enter customer email"/>
+                        name="email"
+                        label="Email"
+                        rules={[{required: false, message: 'Please enter customer email'}]}
+                    >
+                        <Input placeholder="Please enter customer email"/>
                     </Form.Item>
-                 </Col>
+                </Col>
             </Row>
             <Row gutter={16}>
                 <Col span={12}>
                     <Form.Item
-                            name="phoneNumber"
-                            label="Phone"
-                            rules={[{required: false, message: 'Please enter customer phone'}]}
-                        >
-                      <Input placeholder="Please enter customer phone"/>
+                        name="phoneNumber"
+                        label="Phone"
+                        rules={[{required: false, message: 'Please enter customer phone'}]}
+                    >
+                        <Input placeholder="Please enter customer phone"/>
                     </Form.Item>
-                 </Col>
+                </Col>
             </Row>
             <Row>
                 <Col span={12}>
-                    <Form.Item >
+                    <Form.Item>
                         <Button type="primary" htmlType="submit">
                             Submit
                         </Button>
@@ -162,7 +162,7 @@ function CustomerDrawerForm({showDrawer, setShowDrawer, fetchCustomers}) {
                 </Col>
             </Row>
             <Row>
-                {submitting && <Spin indicator={antIcon} />}
+                {submitting && <Spin indicator={antIcon}/>}
             </Row>
         </Form>
     </Drawer>
