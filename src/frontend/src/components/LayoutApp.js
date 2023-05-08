@@ -44,7 +44,7 @@ const LayoutApp = ({fetchCustomersLike,renderCustomers}) => {
                             <Breadcrumb.Item>
                                 <Space direction="vertical">
                                     <Search
-                                        placeholder="input search text"
+                                        placeholder="find customer by last name"
                                         allowClear
                                         enterButton="Search"
                                         size="large"
