@@ -2,7 +2,7 @@ name: CI
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
   workflow_dispatch:
 
@@ -32,4 +32,6 @@ jobs:
         with:
           java-version: ${{ env.JAVA_VERSION }}
       - name: Maven Clean Package
-        run: ./mvnw --no-transfer-progress clean package -P build-frontend
+        run: |
+          ./mvnw --no-transfer-progress clean
+          ./mvnw --no-transfer-progress package -P build-frontend
