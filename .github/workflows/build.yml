@@ -12,6 +12,7 @@ env:
   POSTGRESQL_USER: postgres
   POSTGRESQL_PASSWORD: dr.dirlija
   JAVA_VERSION: 1.17
+  JAVA_PACKAGE: jdk
 
 jobs:
   build:
@@ -31,7 +32,7 @@ jobs:
       - uses: actions/setup-java@v1.4.3
         with:
           java-version: ${{ env.JAVA_VERSION }}
-          java-package: 'openJdk'
+          java-package: ${{ env.JAVA_PACKAGE }}
       - name: Maven Clean Package
         run: |
           ./mvnw --no-transfer-progress clean
