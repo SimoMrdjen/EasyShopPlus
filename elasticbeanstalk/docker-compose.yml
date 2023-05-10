@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   backend:
-    image: "simomrdjen/easy-shop-plus:latest"
+    image: "simomrdjen/easy-shop-plus:2"
     ports:
       - "80:8080"
     restart: "always"
