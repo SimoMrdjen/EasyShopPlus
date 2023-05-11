@@ -31,5 +31,6 @@ jobs:
       - uses: actions/setup-java@v2
         with:
           java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'openjdk'
       - name: Maven Clean Package
         run: mvn --no-transfer-progress clean package -P build-frontend
