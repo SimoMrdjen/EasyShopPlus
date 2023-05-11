@@ -33,7 +33,7 @@ jobs:
         with:
           java-version: ${{ env.JAVA_VERSION }}
           java-package: ${{ env.JAVA_PACKAGE }}
-          distribution: 'openjdk'
+          distribution: 'jdk-17'
       - name: Maven Clean Package
         run: |
           ./mvnw --no-transfer-progress clean
