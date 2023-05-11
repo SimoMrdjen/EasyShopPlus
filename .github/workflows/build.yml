@@ -12,14 +12,13 @@ env:
   POSTGRESQL_USER: postgres
   POSTGRESQL_PASSWORD: dr.dirlija
   JAVA_VERSION: 1.17
-  JAVA_PACKAGE: jdk
 
 jobs:
   build:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:15.2
+        image: postgres:${{ env.POSTGRESQL_VERSION }}
         env:
           POSTGRES_DB: ${{ env.POSTGRESQL_DB }}
           POSTGRES_USER: ${{ env.POSTGRESQL_USER }}
@@ -32,8 +31,5 @@ jobs:
       - uses: actions/setup-java@v2
         with:
           java-version: ${{ env.JAVA_VERSION }}
-          java-package: ${{ env.JAVA_PACKAGE }}
       - name: Maven Clean Package
-        run: |
-          ./mvnw --no-transfer-progress clean
-          ./mvnw --no-transfer-progress package -P build-frontend
+        run: mvn --no-transfer-progress clean package -P build-frontend
