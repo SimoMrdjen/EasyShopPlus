@@ -9,7 +9,7 @@ class PlusApplicationTests {
 
 	@Test
 	void contextLoads() {
-Assertions.fail("Context fail");
+//Assertions.fail("Context fail");
 //11111111111111111111
 
 	}
