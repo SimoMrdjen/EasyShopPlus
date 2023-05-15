@@ -246,7 +246,7 @@
 					<version>1.12.1</version>
 					<configuration>
 						<nodeVersion>v18.14.2 </nodeVersion>
-						<npmVersion>9.5.0</npmVersion>
+						<npmVersion>9.5.1</npmVersion>
 						<workingDirectory>src/frontend</workingDirectory>
 					</configuration>
 					<executions>
@@ -255,10 +255,8 @@
 							<goals>
 								<goal>install-node-and-npm</goal>
 							</goals>
-<!--							<configuration>-->
-<!--								<nodeVersion>v18.14.2 </nodeVersion>-->
-<!--								<npmVersion>9.5.0</npmVersion>-->
-<!--							</configuration>-->
+
+
 						</execution>
 						<execution>
 							<id>npm install</id>
@@ -281,7 +279,7 @@
 					</executions>
 				</plugin>
 					<plugin>
-<!--						<groupId>org.apache.maven.plugins</groupId>-->
+						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-resources-plugin</artifactId>
 <!--						<version>3.2.0</version>-->
 						<executions>
