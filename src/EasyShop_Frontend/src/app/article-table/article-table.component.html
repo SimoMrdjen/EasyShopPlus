@@ -1,0 +1,35 @@
+
+<app-edit-article [title]="title"></app-edit-article>
+<hr />
+<nz-table *ngIf="articles$ | async as articles" [nzData]="articles"
+ #fixedTable
+  [nzScroll]="{ x: '1000px', y: '500px' }">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Naziv</th>
+      <th>Cena</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let article of articles">
+      <td>{{ article.id }}</td>
+      <td>{{ article.code }}</td>
+      <td>{{ article.price }}</td>
+     
+
+      <td>
+        <nz-divider nzType="vertical"></nz-divider>
+        <button nz-button nzType="primary" (click)="openEditArticle(article)">
+          Izmeni
+        </button>
+      </td>
+      <td>
+        <a [routerLink]="['/article', article.id]">
+          <button nz-button nzType="primary">Prikazi artikal</button></a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

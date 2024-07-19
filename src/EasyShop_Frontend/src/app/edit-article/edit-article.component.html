@@ -1,0 +1,73 @@
+
+<button nz-button nzType="primary" (click)="openAddArticle()">Unesi artikal</button>
+<nz-drawer
+  [nzBodyStyle]="{ overflow: 'auto' }"
+  [nzMaskClosable]="false"
+  [nzWidth]="720"
+  [nzVisible]="visible"
+  nzTitle="{{ title }}"
+  [nzFooter]="footerTpl"
+  (nzOnClose)="close()"
+>
+  <form nz-form *nzDrawerContent>
+    <div nz-row [nzGutter]="8">
+     
+    </div>
+
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Kupac</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              [ngModel]="article?.code"
+              (ngModelChange)="article && (article.code = $event)"
+              placeholder="Unesi kod-naziv artikla"
+              name="code"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Cena</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              [ngModel]="article?.price"
+              (ngModelChange)="article && (article.price = $event)"
+              placeholder="unesi cenu artikla"
+              name="price"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="8">
+     
+    </div>
+    <div nz-row [nzGutter]="8"></div>
+    <div nz-row [nzGutter]="8"></div>
+    <div nz-row [nzGutter]="8"></div>
+    <div nz-row [nzGutter]="8"></div>
+    <div nz-row [nzGutter]="8"></div>
+    <div nz-row [nzGutter]="8"></div>
+    <div nz-row [nzGutter]="8"></div>
+  </form>
+
+  <ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px" (click)="close()">
+        Cancel
+      </button>
+      <button nz-button nzType="primary" (click)="editOrAddArticle()">
+        Dodaj artikal
+      </button>
+    </div>
+  </ng-template>
+</nz-drawer>

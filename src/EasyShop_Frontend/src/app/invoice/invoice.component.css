@@ -1,0 +1,70 @@
+* {
+    font-family: "Poppins", sans-serif;
+    color: rgb(122, 121, 121);
+    letter-spacing: 2px;
+  }
+  
+  .form-container {
+    overflow: hidden;
+    height: 100vh;
+    background-color: #f3f6f3;
+  }
+  
+  .form {
+    max-width: 300px;
+    margin: 60px auto;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-field {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    background-color: #dee1de;
+    outline: none;
+    border: none;
+    background-image: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+  
+  .form-field::placeholder {
+    color: white;
+  }
+  
+  .form-btn {
+    background-color: rgb(5, 5, 5);
+    color: #9fa3a0;
+    padding: 10px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 1000;
+  }
+  .form-btn-m {
+    background-color: rgb(5, 5, 5);  color: #2c5f2d;
+    padding: 10px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 50%;
+    font-weight: 700;
+    color: #9fa3a0;
+  
+  }
+  .form-btn:hover {
+    opacity: 0.8;
+  }
+  
+  .btn-row {
+    display: flex;
+    gap: 20px;
+  }
+  

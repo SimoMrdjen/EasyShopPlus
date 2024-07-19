@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+    font-family: "Montserrat", sans-serif;
+  }
+/* Define the blinking effect */
+@keyframes blink {
+  50% {
+      opacity: 0;
+  }
+}
+
+/* Apply the animation to your class */
+.red-breadcrumb {
+  color: red !important;
+
+  font-weight: bold;
+  animation: blink 1s linear infinite;
+}
+
+

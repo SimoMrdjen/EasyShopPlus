@@ -1,0 +1,99 @@
+
+
+.logo {
+  width: 80px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px 24px 16px 0;
+  float: left;
+}
+
+[nz-menu] {
+  line-height: 16px;
+}
+
+nz-breadcrumb {
+  margin: 16px 0;
+}
+
+nz-content {
+  padding: 0 50px;
+}
+
+nz-footer {
+  text-align: center;
+}
+
+.inner-content {
+  background: #fff;
+  padding: 24px;
+  min-height: 280px;
+}
+
+.footer-image {
+  width: 300px; /* Or whatever width you prefer */
+  height: auto; /* Maintains aspect ratio */
+  margin-right: 10px; /* Adds some space between the image and the text */
+}
+
+.header-image {
+  width: 10px; /* Or whatever width you prefer */
+  height: auto; /* Maintains aspect ratio */
+  margin-right: 10px; /* Adds some space between the image and the text */
+}
+
+.logo {
+  height: 40px; /* Or whatever height you prefer */
+  width: auto; /* Keeps the aspect ratio */
+  margin-right: 20px; /* Adds some space between the logo and the menu items */
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logout-button {
+  margin-right: auto; /* Push the button to the far right */
+}
+
+nz-content {
+  height: 75vh; /* Adjust the value as needed */
+}
+
+/* In your component's CSS file */
+.red-breadcrumb {
+  color: red;
+}
+
+/* Updated Styles for Visibility and Responsiveness */
+.nz-header,
+[nz-menu] {
+  color: #ffffff; /* Adjust color for visibility */
+}
+
+li nz-menu-item {
+  color: #000000; /* Adjust color for visibility */
+}
+
+.logo h6 {
+  color: #000000; /* Adjust logo text color */
+}
+
+/* Media Query for Mobile View */
+@media screen and (max-width: 768px) {
+  .nz-header,
+  [nz-menu] {
+    color: #ffffff; /* Adjust for mobile */
+  }
+
+  li nz-menu-item {
+    color: #000000; /* Adjust for mobile */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* Add further adjustments for smaller screens if needed */
+}

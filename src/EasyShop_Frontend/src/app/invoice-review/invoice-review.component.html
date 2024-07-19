@@ -1,0 +1,41 @@
+<h5>KUPAC:     <b>{{customer.company}}  {{customer.city}}</b></h5>
+
+<h6>Popust:  {{discountGroup}} %</h6>
+<div id="invoice-content">
+<nz-table *ngIf="invoiceItems; let items" [nzData]="items" #fixedTable
+  [nzScroll]="{ x: '1000px', y: '500px' }">
+  <thead>
+    <tr>
+      <th>Ordinal</th>
+      <th>Artikal</th>
+      <th>Grupa</th>
+      <th>Cena</th>
+      <th>Popust</th>
+      <th>Kolicina</th>
+      <th>Iznos</th>
+
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ item.product }}</td> 
+      <td>{{ item.articleType }}</td> 
+      <td>{{ item.price | number:'1.2-2' }}</td>
+      <td>{{ item.discount}}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.total | number:'1.2-2'}}</td>
+      <td>
+        <button nz-button nzType="primary" (click)="removeItem(item)">Remove</button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<hr>
+<button nz-button nzType="primary" (click)="printInvoice()"> Print</button><p>         </p>
+<button nz-button nzType="primary" (click)="saveInvoice()">Save</button><p>         </p>
+<button nz-button nzType="primary" (click)="addItem()" alig>Dodaj artikal</button>
+<h3>Izgled forme bice korigovan , ovo je samo proba funkcionalnosti!!!</h3>
+

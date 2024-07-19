@@ -1,0 +1,72 @@
+<!--<app-lay-out>
+  <div class="container-fluid">
+    <router-outlet></router-outlet>
+  </div>
+</app-lay-out>-->
+
+<nz-layout>
+  <nz-header>
+
+    <ul nz-menu nzTheme="dark" nzMode="horizontal">
+
+      <li nz-menu-item>
+        <a
+          [routerLink]="['/invoice']"
+        >Nova otpremnica</a
+        >
+      </li>
+      <li nz-menu-item>
+        <a
+          [routerLink]="['/article']"
+        >Novi artikal</a
+        >
+      </li>
+   
+      <li nz-menu-item>
+        <a
+          [routerLink]="['/customer']"
+        >Unos kupca</a
+        >
+      </li>
+      <li nz-menu-item>
+        <a
+        [routerLink]="['']"
+      >  Home</a
+      >
+
+      </li>
+
+      <li nz-menu-item>
+        <button nz-button nzGhost (click)="onLogout()" class="logout-button">
+          Odjavi se
+        </button>
+      </li>
+  <!--
+      <li nz-menu-item>
+        <button nz-button nzGhost class="logout-button">
+       <a
+            [routerLink]="['/users']"
+            class="nav-link px-2 text-white"
+            *ngIf="role == 0"
+            >Korisnici</a
+          >
+        </button>
+      </li>-->
+    </ul>
+  </nz-header>
+  <nz-content  >
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>KissMiss</nz-breadcrumb-item>
+    </nz-breadcrumb>
+    <div class="inner-content">
+      <router-outlet></router-outlet>
+    </div>
+  </nz-content>
+  <!--
+    <nz-footer>
+    <h4>Kiss Miss Wholesale</h4>
+       <img src="" alt="" class="footer-image" />
+  </nz-footer>
+  -->
+
+</nz-layout>

@@ -1,0 +1,26 @@
+<nz-breadcrumb>
+  <nz-breadcrumb-item><h3>Unos otpremnice</h3></nz-breadcrumb-item>
+</nz-breadcrumb>
+<div class="form-container">
+  <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()" class="form">
+    <div>
+      <label for="search" class="form-label">Pretraga kupaca:</label>
+      <input type="text" id="search" (input)="searchProducts($event)" placeholder="Kupac..." class="form-field">
+    </div>
+    <div>
+      <label for="customer" class="form-label">Kupac:</label>
+      <select formControlName="customer" class="form-field">
+        <option *ngFor="let customer of filteredCustomers$ | async" [ngValue]="customer.id">
+          {{ customer.company }}-{{ customer.city }}--{{ customer.id }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <label for="discount" class="form-label">Popust:</label>
+      <input type="number" formControlName="discount" step="1" class="form-field">
+    </div>
+    <div class="btn-row">
+      <button type="submit" [disabled]="!invoiceForm.valid" class="form-btn">Nova otpremnica</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,89 @@
+<button nz-button nzType="primary" (click)="openAddCustomer()">Unesi kupca</button>
+<nz-drawer
+  [nzBodyStyle]="{ overflow: 'auto' }"
+  [nzMaskClosable]="false"
+  [nzWidth]="720"
+  [nzVisible]="visible"
+  nzTitle="{{ title }}"
+  [nzFooter]="footerTpl"
+  (nzOnClose)="close()"
+>
+  <form nz-form *nzDrawerContent>
+    <div nz-row [nzGutter]="8">
+     
+    </div>
+
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Kupac</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              [ngModel]="customer?.company"
+              (ngModelChange)="customer && (customer.company = $event)"
+              placeholder="Unesi ime ovlascenog lica"
+              name="company"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Mesto</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              [ngModel]="customer?.city"
+              (ngModelChange)="customer && (customer.city = $event)"
+              placeholder="unesi mesto kupca"
+              name="city"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Ovalsceno lice</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              [ngModel]="customer?.person"
+              (ngModelChange)="customer && (customer.person = $event)"
+              placeholder="unesi mesto kupca"
+              name="person"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+          
+
+
+    <div nz-row [nzGutter]="8"></div>
+    <div nz-row [nzGutter]="8"></div>
+    <div nz-row [nzGutter]="8"></div>
+    <div nz-row [nzGutter]="8"></div>
+    <div nz-row [nzGutter]="8"></div>
+    <div nz-row [nzGutter]="8"></div>
+    <div nz-row [nzGutter]="8"></div>
+  </form>
+
+  <ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px" (click)="close()">
+        Cancel
+      </button>
+      <button nz-button nzType="primary" (click)="editOrAddCustomer()">
+        Submit
+      </button>
+    </div>
+  </ng-template>
+</nz-drawer>

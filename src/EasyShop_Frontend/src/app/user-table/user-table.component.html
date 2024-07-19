@@ -1,0 +1,34 @@
+<br />
+<app-edit-user [title]="title"></app-edit-user>
+<hr />
+<nz-table [nzData]="users" #fixedTable [nzScroll]="{ x: '1000px', y: '500px' }">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Email</th>
+      <th>Rola</th>
+
+      <th>Action</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.role }}</td>
+   
+      <td>
+        <nz-divider nzType="vertical"></nz-divider>
+        <button nz-button nzType="primary" (click)="openEditUser(user)">
+          Edit
+        </button>
+      </td>
+      <td>
+        <a [routerLink]="['/user', user.id]">
+          <button nz-button nzType="primary">Show user</button></a
+        >
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

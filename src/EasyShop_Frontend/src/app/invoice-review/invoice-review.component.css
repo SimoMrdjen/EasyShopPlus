@@ -1,0 +1,13 @@
+@media print {
+  body * {
+	visibility: hidden; /* Hide everything in the body when printing */
+  }
+  #invoice-content, #invoice-content * {
+	visibility: visible; /* Only show the invoice content and its children */
+  }
+  #invoice-content {
+	position: absolute;
+	left: 0;
+	top: 0;
+  }
+}
