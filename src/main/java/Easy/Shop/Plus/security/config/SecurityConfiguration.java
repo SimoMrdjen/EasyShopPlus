@@ -117,7 +117,7 @@ public class SecurityConfiguration {
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
     private final LogoutHandler logoutHandler;
-//    private final CorsConfig corsConfig;
+   private final CorsConfig corsConfig;
 
 
     @Bean
@@ -125,8 +125,8 @@ public class SecurityConfiguration {
         http
                 .csrf()
                 .disable()
-//                .cors()
-//                .and()
+                .cors()
+                .and()
                 .authorizeHttpRequests()
 //                .requestMatchers(
 //                        "/", "/static/favicon.ico", "/static/index.html",
@@ -174,7 +174,7 @@ public class SecurityConfiguration {
 //                .and()
 
                 .authenticationProvider(authenticationProvider)
-  //              .addFilterBefore(corsConfig.corsFilter(), UsernamePasswordAuthenticationFilter.class)  //TODO comment this for bundling
+                .addFilterBefore(corsConfig.corsFilter(), UsernamePasswordAuthenticationFilter.class)  //TODO comment this for bundling
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout()
                 .logoutUrl("/api/auth/logout")
