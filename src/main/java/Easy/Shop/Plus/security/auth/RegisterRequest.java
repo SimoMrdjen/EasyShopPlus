@@ -1,6 +1,6 @@
 package Easy.Shop.Plus.security.auth;
 
-import IndirektniPSF.backend.security.user.Role;
+import Easy.Shop.Plus.security.user.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,10 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RegisterRequest {
 
-    private Integer sifraradnika;
-    private Integer za_sif_sekret;
-    private Integer sif_oblast;
-    private Integer sifra_pp;
+    private Integer id;
+
     private String email;
     private String password;
     private Role role;

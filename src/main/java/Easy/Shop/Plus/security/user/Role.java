@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static IndirektniPSF.backend.security.user.Permission.*;
+import static Easy.Shop.Plus.security.user.Permission.*;
 
 
 @RequiredArgsConstructor

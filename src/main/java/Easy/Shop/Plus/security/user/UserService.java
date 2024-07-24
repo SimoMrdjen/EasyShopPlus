@@ -1,5 +1,6 @@
 package Easy.Shop.Plus.security.user;
 
+import Easy.Shop.Plus.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -49,7 +50,6 @@ public class UserService {
         var userExisting = userRepository.findById(id).orElseThrow();
         userExisting.setEmail(userDto.getEmail());
         userExisting.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        userExisting.setZa_sif_sekret(userDto.getZa_sif_sekret());
         userExisting.setRole(userDto.getRole());
         return mapper.mappUserToDto(userRepository.save(userExisting));
     }

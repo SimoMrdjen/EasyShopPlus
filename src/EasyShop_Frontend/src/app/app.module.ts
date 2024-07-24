@@ -34,13 +34,11 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { HomePageComponent } from './home-page/home-page.component';
 
-import { BlankPageComponent } from './blank-page/blank-page.component';
 
 import { CommonModule } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { EntryComponent } from './entries/entry/entry.component';
+
 
 // import localeSrLatn from '@angular/common/locales/sr-Latn';
 // registerLocaleData(localeSrLatn);
@@ -48,12 +46,14 @@ import localeDe from '@angular/common/locales/de';
 import { CustomerComponent } from './customer/customer.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { CustomerTableComponent } from './customer-table/customer-table.component';
-import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 import { ArticleTableComponent } from './article-table/article-table.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
-import { InvoiceComponent } from './invoice/invoice.component';
-import { InvoiceReviewComponent } from './invoice-review/invoice-review.component'; // or any other locale
 registerLocaleData(localeDe);
+
+import { EntryComponent } from './entries/entry/entry.component';
+import { InvoiceReviewComponent } from './invoice-review/invoice-review.component';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @NgModule({
   declarations: [
@@ -64,21 +64,17 @@ registerLocaleData(localeDe);
     UserTableComponent,
     EditUserComponent,
     UserDetailsComponent,
-   
-    HomePageComponent,
-
-    BlankPageComponent,
- 
+    HomePageComponent, 
     EntryComponent,
     CustomerComponent,
     EditCustomerComponent,
     CustomerTableComponent,
-    CustomerDetailsComponent,
     ArticleTableComponent,
     EditArticleComponent,
     InvoiceComponent,
     InvoiceReviewComponent
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,

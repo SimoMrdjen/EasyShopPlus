@@ -20,10 +20,10 @@
           <nz-form-control>
             <input
               nz-input
-              [ngModel]="customer?.company"
-              (ngModelChange)="customer && (customer.company = $event)"
-              placeholder="Unesi ime ovlascenog lica"
-              name="company"
+              [ngModel]="customer?.lastName"
+              (ngModelChange)="customer && (customer.lastName = $event)"
+              placeholder="Unesi prezime kupca"
+              name="lastName"
             />
           </nz-form-control>
         </nz-form-item>
@@ -37,10 +37,10 @@
           <nz-form-control>
             <input
               nz-input
-              [ngModel]="customer?.city"
-              (ngModelChange)="customer && (customer.city = $event)"
-              placeholder="unesi mesto kupca"
-              name="city"
+              [ngModel]="customer?.firstName"
+              (ngModelChange)="customer && (customer.firstName = $event)"
+              placeholder="Unesi ime kupca"
+              name="firstName"
             />
           </nz-form-control>
         </nz-form-item>
@@ -50,30 +50,108 @@
     <div nz-row [nzGutter]="8">
       <div nz-col nzSpan="12">
         <nz-form-item>
-          <nz-form-label>Ovalsceno lice</nz-form-label>
+          <nz-form-label>Adresa</nz-form-label>
           <nz-form-control>
             <input
               nz-input
-              [ngModel]="customer?.person"
-              (ngModelChange)="customer && (customer.person = $event)"
-              placeholder="unesi mesto kupca"
-              name="person"
+              [ngModel]="customer?.address"
+              (ngModelChange)="customer && (customer.address = $event)"
+              placeholder="Unesi adresu kupca"
+              name="address"
             />
           </nz-form-control>
         </nz-form-item>
       </div>
     </div>
 
-          
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>JMBG</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              [ngModel]="customer?.jmbg"
+              (ngModelChange)="customer && (customer.jmbg = $event)"
+              placeholder="Unesi JMBG kupca"
+              name="jmbg"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Br. LK</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              [ngModel]="customer?.brLK"
+              (ngModelChange)="customer && (customer.brLK = $event)"
+              placeholder="Unesi br. LK kupca"
+              name="brLK"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
 
 
-    <div nz-row [nzGutter]="8"></div>
-    <div nz-row [nzGutter]="8"></div>
-    <div nz-row [nzGutter]="8"></div>
-    <div nz-row [nzGutter]="8"></div>
-    <div nz-row [nzGutter]="8"></div>
-    <div nz-row [nzGutter]="8"></div>
-    <div nz-row [nzGutter]="8"></div>
+    
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>PU</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              [ngModel]="customer?.pu"
+              (ngModelChange)="customer && (customer.pu = $event)"
+              placeholder="Unesi PU izdavaoca LK kupca"
+              name="pu"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>  
+
+  <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Telefon</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              [ngModel]="customer?.phoneNumber"
+              (ngModelChange)="customer && (customer.phoneNumber = $event)"
+              placeholder="Unesi telefon kupca"
+              name="phoneNumber"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>email</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              [ngModel]="customer?.email"
+              (ngModelChange)="customer && (customer.email = $event)"
+              placeholder="Unesi email kupca"
+              name="email"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+   
   </form>
 
   <ng-template #footerTpl>

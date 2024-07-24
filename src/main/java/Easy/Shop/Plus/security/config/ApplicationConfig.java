@@ -1,6 +1,6 @@
 package Easy.Shop.Plus.security.config;
 
-import IndirektniPSF.backend.security.user.UserRepository;
+import Easy.Shop.Plus.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

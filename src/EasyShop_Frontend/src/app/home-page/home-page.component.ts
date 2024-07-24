@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class HomePageComponent {
   //public zakList: ZakljucniList;
-  selectedKvartal?: number;
+  //selectedKvartal?: number;
 
   constructor() {}
 

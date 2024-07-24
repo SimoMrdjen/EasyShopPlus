@@ -11,7 +11,7 @@
       <label for="customer" class="form-label">Kupac:</label>
       <select formControlName="customer" class="form-field">
         <option *ngFor="let customer of filteredCustomers$ | async" [ngValue]="customer.id">
-          {{ customer.company }}-{{ customer.city }}--{{ customer.id }}
+          {{ customer.lastName }}-{{ customer.firstName }}--{{ customer.id }}
         </option>
       </select>
     </div>

@@ -94,7 +94,7 @@ export class InvoiceComponent implements OnInit {
     const searchString = String(value).toLowerCase();
     return this.customers$.pipe(
       map(customers => customers.filter(customer =>
-        customer.company.toLowerCase().includes(searchString)
+        customer.lastName && customer.lastName.toLowerCase().includes(searchString)
       ))
     );
   }

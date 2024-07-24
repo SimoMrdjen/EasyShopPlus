@@ -1,6 +1,6 @@
 package Easy.Shop.Plus.security.user;
 
-import IndirektniPSF.backend.security.token.Token;
+import Easy.Shop.Plus.security.token.Token;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,30 +17,13 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "ind_lozinka")
+@Table(name = "user")
 public class User implements UserDetails {
     //Entity is inherited from existing table/DB , which is used from another desktop app
 
     @Id
-    private Integer sifraradnika;
-    @Column
-    private Integer za_sif_sekret;
-    @Column
-    private Integer za_sif_rac;
-    @Column
-    private Integer sif_oblast;
-    @Column
-    private String ime;
-    @Column
-    private String lozinka;
-//    @Column
-//    private String sncert;
-//    @Column
-//    private String sncert_rez;
-    @Column
-    private Integer javno_pred;
-    @Column
-    private Integer sifra_pp;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     private String email;
     private String password;
@@ -91,12 +74,7 @@ public class User implements UserDetails {
         return "User{}";
     }
 
-    public User(Integer sifraradnika, Integer za_sif_sekret, Integer sifra_pp, String email) {
-        this.sifraradnika = sifraradnika;
-        this.za_sif_sekret = za_sif_sekret;
-        this.sifra_pp = sifra_pp;
-        this.email = email;
-    }
+
 
     public void setRole(Role  role) {
         this.role = role;

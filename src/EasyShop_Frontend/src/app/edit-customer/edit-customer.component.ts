@@ -73,7 +73,7 @@ export class EditCustomerComponent implements OnInit, OnDestroy {
           this.notification.create(
             'success',
             'Succesfull',
-            `${response.company} is succesfuly edited!`
+            `${response.lastName} is succesfuly edited!`
           );
         },
         error: (err) => {
@@ -93,7 +93,7 @@ export class EditCustomerComponent implements OnInit, OnDestroy {
           this.notification.create(
             'success',
             'Succesfull',
-            `${response.company} is succesfuly added!`
+            `${response.lastName} is succesfuly added!`
           );
         },
         error: (err) => {

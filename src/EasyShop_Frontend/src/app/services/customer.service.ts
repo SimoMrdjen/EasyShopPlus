@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Customer } from '../models/customer.model';
-import { customersData } from '../database/customers';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BASE_URL } from '../constants';
@@ -10,22 +9,21 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class CustomerService {
-  getCustomerById(customerId: number): Customer {
-    throw new Error('Method not implemented.');
-  }
+
  // private customers = customersData;
    private url = BASE_URL + '/customer' ;
    public customer: Customer | null = null;
    private visibilitySubject = new BehaviorSubject<boolean>(false);
    public visibility$ = this.visibilitySubject.asObservable();
-  // public isAddingArticle: boolean = true;
    public isAddingCustomer: boolean = true;
  
-   
-
   constructor(
     private http: HttpClient,  
     private router: Router) { 
+  }
+
+  getCustomerById(customerId: number): Customer {
+    throw new Error('Method not implemented.');
   }
 
   getCustomers(): Observable<Customer[]> {
@@ -57,6 +55,7 @@ export class CustomerService {
     };
     return this.http.post<Customer>(this.url, customer, options);
   }
+  
   setArticle(customer: Customer): void {
     this.customer = customer;
   }

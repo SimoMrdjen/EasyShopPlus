@@ -1,5 +1,6 @@
-package Easy.Shop.Plus.security.user;
+package Easy.Shop.Plus.repository;
 
+import Easy.Shop.Plus.security.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

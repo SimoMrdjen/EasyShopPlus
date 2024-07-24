@@ -54,14 +54,10 @@ export class CustomerComponent {
     this.editCustomerService.open();
   }
 
-  /*
-  getUsersWithoutSecurity() {
-    this.editCustomerService.getUsersWithoutSecurity().subscribe((response) => {
-      console.log(response);
-      this.customers = response;
-    });
-    ////////////////
-    */
+  openAddCustomer() {
+    this.title = 'Add';
+    this.editCustomerService.isAddingCustomer = true;
+    this.editCustomerService.open();
   }
 
-
+}

@@ -5,20 +5,26 @@
   <thead>
     <tr>
       <th>Id</th>
-      <th>Kupac</th>
-      <th>Mesto</th>
-      <th>Ovl.lice</th>
-      <th></th>
-      <th></th>
+      <th>Prezime</th>
+      <th>Ime</th>
+      <th>Adresa</th>
+      <th>PU</th>
+      <th>JMBG</th>
+      <th>Telefon</th>
+      <th>Email</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let customer of customers">
       <td>{{ customer.id }}</td>
-      <td>{{ customer.company }}</td>
-      <td>{{ customer.city }}</td>
-      <td>{{ customer.person }}</td>
-
+      <td>{{ customer.lastName }}</td>
+      <td>{{ customer.firstName }}</td>
+      <td>{{ customer.address }}</td>
+      <td>{{ customer.pu }}</td>
+      <td>{{ customer.jmbg }}</td>
+      <td>{{ customer.phoneNumber }}</td>
+      <td>{{ customer.email }}</td>
+   
       <td>
         <nz-divider nzType="vertical"></nz-divider>
         <button nz-button nzType="primary" (click)="openEditCustomer(customer)">

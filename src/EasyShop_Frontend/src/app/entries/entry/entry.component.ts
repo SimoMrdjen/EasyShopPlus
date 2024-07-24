@@ -68,7 +68,7 @@ export class EntryComponent implements OnInit {
 // /*
 
   ngOnInit(): void {
-    this.title = this.invoiceService.invoice.customer?.company || 'Kupac nije odabran';
+    this.title = this.invoiceService.invoice.customer?.lastName || 'Kupac nije odabran';
     this.discountGroup = this.invoiceService.invoice.discount;
 
     this.invoiceService.products$.subscribe(products => {

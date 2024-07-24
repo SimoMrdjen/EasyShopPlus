@@ -4,7 +4,6 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { UserTableComponent } from './user-table/user-table.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { BlankPageComponent } from './blank-page/blank-page.component';
 import { AuthGuard } from './auth.guard';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { EntryComponent } from './entries/entry/entry.component';

@@ -12,12 +12,7 @@ import lombok.NoArgsConstructor;
 public class UserDto {
     //RegisterRequest
 
-    private Integer sifraradnika;
-    private Integer za_sif_sekret;
-    private Integer sif_oblast;
-    private Integer sifra_pp;
-    private String ime;
-    private String lozinka;
+    private Integer id;
     private String email;
     private String password;
     private Role role;

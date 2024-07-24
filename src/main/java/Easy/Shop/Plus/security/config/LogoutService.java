@@ -1,6 +1,6 @@
 package Easy.Shop.Plus.security.config;
 
-import IndirektniPSF.backend.security.token.TokenRepository;
+import Easy.Shop.Plus.repository.TokenRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

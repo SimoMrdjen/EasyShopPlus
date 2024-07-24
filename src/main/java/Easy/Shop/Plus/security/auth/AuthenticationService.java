@@ -1,13 +1,12 @@
 package Easy.Shop.Plus.security.auth;
 
 
-import IndirektniPSF.backend.obrazac5.ppartner.PPartnerService;
-import IndirektniPSF.backend.security.config.JwtService;
-import IndirektniPSF.backend.security.token.Token;
-import IndirektniPSF.backend.security.token.TokenRepository;
-import IndirektniPSF.backend.security.token.TokenType;
-import IndirektniPSF.backend.security.user.User;
-import IndirektniPSF.backend.security.user.UserRepository;
+import Easy.Shop.Plus.repository.TokenRepository;
+import Easy.Shop.Plus.repository.UserRepository;
+import Easy.Shop.Plus.security.config.JwtService;
+import Easy.Shop.Plus.security.token.Token;
+import Easy.Shop.Plus.security.token.TokenType;
+import Easy.Shop.Plus.security.user.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -30,20 +29,17 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
-    private final PPartnerService pPartnerService;
 
     // public static User GLOBALUSER;
 
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
-                .sifraradnika(request.getSifraradnika())
-                .za_sif_sekret(request.getZa_sif_sekret())
-                .sif_oblast(request.getSif_oblast())
-                .sifra_pp(request.getSifra_pp())
+                .id(request.getId())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(request.getRole())
                 .build();
+
         var savedUser = repository.save(user);
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
@@ -66,7 +62,6 @@ public class AuthenticationService {
                 .orElseThrow();
 
 
-        var partner = pPartnerService.getPartner(user.getSifra_pp());
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);
@@ -75,7 +70,6 @@ public class AuthenticationService {
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
                 .role(String.valueOf(user.getRole()))
-                .indirektni(partner)
                 .build();
     }
 
@@ -91,7 +85,8 @@ public class AuthenticationService {
     }
 
     private void revokeAllUserTokens(User user) {
-        var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getSifraradnika());
+        var validUserTokens =
+                tokenRepository.findAllValidTokenByUser(user.getId());
         if (validUserTokens.isEmpty())
             return;
         validUserTokens.forEach(token -> {
