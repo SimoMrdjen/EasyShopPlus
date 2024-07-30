@@ -1,0 +1,45 @@
+<app-edit-customer [title]="title"></app-edit-customer>
+<app-contract-drawer [title]="title" [customer]="selectedCustomer" [visible]="isDrawerVisible"></app-contract-drawer>
+
+<hr />
+<div class="table-container">
+  <nz-table *ngIf="customers$ | async as customers" [nzData]="customers" #fixedTable [nzScroll]="{ x: '1000px', y: '500px' }">
+    <thead>
+      <tr>
+        <th class="col-id">Id</th>
+        <th class="col-prezime">Prezime</th>
+        <th class="col-ime">Ime</th>
+        <th class="col-adresa">Adresa</th>
+        <th class="col-pu">PU</th>
+        <th class="col-jmbg">JMBG</th>
+        <th class="col-telefon">Telefon</th>
+        <th class="col-email">Email</th>
+        <th class="col-actions">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <td class="col-id">{{ customer.id }}</td>
+        <td class="col-prezime">{{ customer.lastName }}</td>
+        <td class="col-ime">{{ customer.firstName }}</td>
+        <td class="col-adresa">{{ customer.address }}</td>
+        <td class="col-pu">{{ customer.pu }}</td>
+        <td class="col-jmbg">{{ customer.jmbg }}</td>
+        <td class="col-telefon">{{ customer.phoneNumber }}</td>
+        <td class="col-email">{{ customer.email }}</td>
+        <td class="col-actions">
+          <nz-divider nzType="vertical"></nz-divider>
+          <button nz-button nzType="primary" (click)="newContract(customer)">
+            Novi ugovor za kupca
+          </button>
+          <button nz-button nzType="primary" (click)="openNewContract(customer)">
+            Novi ugovor za kupca
+          </button>
+          <button nz-button nzType="primary" (click)="openEditCustomer(customer)">
+            Izmeni
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

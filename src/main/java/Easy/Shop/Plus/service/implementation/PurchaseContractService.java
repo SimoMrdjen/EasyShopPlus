@@ -50,7 +50,9 @@ public class PurchaseContractService implements IPurchaseContractService {
         PurchaseContract contractCreated =
                 repo.save(mapper.mapCreateDtoToEntity(contractDto));
         PurchaseContractDto dto = mapper.mapGetEntityToDto(contractCreated);
-        dto.setInstallments(installmentService.createInstallments(contractCreated));
+
+        dto.setInstallments(installmentService.createInstallments(contractCreated,
+                            contractDto.getNextInstalmentDate()));
         return dto;
     }
 }

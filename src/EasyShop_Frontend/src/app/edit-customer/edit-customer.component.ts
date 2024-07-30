@@ -106,10 +106,16 @@ export class EditCustomerComponent implements OnInit, OnDestroy {
   }
 
   openAddCustomer() {
-    this.title = 'Create';
+    this.title = 'Unesi novog kupca';
     this.editCustomerService.isAddingCustomer = true;
     this.editCustomerService.customer = new Customer();
     this.open();
+  }
+
+  newContract() {
+
+    this.editCustomerService.close();
+
   }
 
   ngOnChanges(changes: SimpleChanges) {

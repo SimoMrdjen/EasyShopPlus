@@ -1,0 +1,10 @@
+<div *ngIf="contract">
+    <h2>Contract Details</h2>
+    <p><strong>Customer Name:</strong> {{ contract.customer?.firstName }} {{ contract.customer?.lastName }}</p>
+    <p><strong>Contract Amount:</strong> {{ contract.contractAmount | number:'1.2-2' }}</p>
+    <p><strong>Participation:</strong> {{ contract.participation | number:'1.2-2' }}</p>
+    <p><strong>Contract Date:</strong> {{ contract.contractDate | date:'mediumDate' }}</p>
+    <p><strong>Next Instalment Date:</strong> {{ contract.nextInstalmentDate | date:'mediumDate' }}</p>
+    <!-- Add more fields as necessary -->
+  </div>
+  

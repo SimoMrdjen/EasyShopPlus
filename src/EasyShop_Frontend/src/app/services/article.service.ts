@@ -16,9 +16,10 @@ export class ArticleService {
   public visibility$ = this.visibilitySubject.asObservable();
   public isAddingArticle: boolean = true;
 
-   
 
-  constructor(private http: HttpClient,  private router: Router) {}
+
+  constructor(private http: HttpClient,
+    private router: Router) {}
 
 
   getArticles(): Observable<Article[]> {
@@ -50,6 +51,7 @@ export class ArticleService {
     };
     return this.http.post<Article>(this.url, article, options);
   }
+
   setArticle(article: Article): void {
     this.article = article;
   }

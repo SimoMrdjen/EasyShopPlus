@@ -1,0 +1,73 @@
+<div *ngIf="customer">
+  <h2>Novi ugovor za kupca {{ customer.firstName }} {{ customer.lastName }}</h2>
+  <h6 class="red-text">PROVERI PODATKE O KUPCU</h6>
+  <p>Adresa: {{ customer.address }}</p>
+  <p>Br.LK: {{customer.brLK}}</p>
+  <p>PU: {{ customer.pu }} </p>
+  <p>JMBG: {{ customer.jmbg }}</p>
+  <p> Phone: {{ customer.phoneNumber }}</p>
+  <p>Email: {{ customer.email }}</p>
+
+  <form [formGroup]="contractForm" (ngSubmit)="submitContract()" nz-form>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'contractDate'">Datum ugovora</nz-form-label>
+          <nz-form-control [nzErrorTip]="'Please select a valid contract date'">
+            <nz-date-picker formControlName="contractDate" id="contractDate"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col nzSpan="8">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'contractAmount'">Iznos ugovora</nz-form-label>
+          <nz-form-control [nzErrorTip]="'Please enter a valid contract amount'">
+            <input nz-input               type="text"
+            formControlName="contractAmount" id="contractAmount"
+                   placeholder="Unesi iznos ugovora"
+                   class="bold-input right-aligned"
+                   (keypress)="validateNumberInput($event)"
+
+                   (blur)="formatAmount()"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+      <div nz-row [nzGutter]="16">
+      <div nz-col nzSpan="8">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'participation'">Iznos  ucesca</nz-form-label>
+          <nz-form-control [nzErrorTip]="'Please enter a valid participation'">
+            <input nz-input
+            type="text"
+            formControlName="participation" id="participation"
+            (keypress)="validateNumberInput($event)"
+
+                   placeholder="Unesi iznos ucesca"
+                   class="bold-input right-aligned"
+                   (blur)="formatParticipation()"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="16">
+    <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label [nzFor]="'nextInstalmentDate'">Datum prve rate      </nz-form-label>
+          <nz-form-control [nzErrorTip]="'Please select a valid next instalment date'">
+            <nz-date-picker formControlName="nextInstalmentDate" id="nextInstalmentDate"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <button nz-button nzType="primary" [disabled]="contractForm.invalid">Snimi ugovor</button>
+  </form>
+</div>

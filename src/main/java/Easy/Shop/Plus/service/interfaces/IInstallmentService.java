@@ -3,6 +3,7 @@ package Easy.Shop.Plus.service.interfaces;
 import Easy.Shop.Plus.dto.InstallmentDto;
 import Easy.Shop.Plus.entity.PurchaseContract;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IInstallmentService {
@@ -16,5 +17,5 @@ public interface IInstallmentService {
 
     InstallmentDto updateInstallment(InstallmentDto dto, Long id) throws Exception;
 
-    List<InstallmentDto> createInstallments(PurchaseContract contractCreated);
+    List<InstallmentDto> createInstallments(PurchaseContract contractCreated, LocalDate nextInstalmentDate);
 }

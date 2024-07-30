@@ -1,0 +1,27 @@
+/* new-contract.component.css */
+/* Add any custom styles here */
+h2 {
+    margin-bottom: 16px;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  form {
+    margin-top: 16px;
+  }
+
+  button {
+    margin-top: 16px;
+  }
+  .bold-input {
+    font-weight: bold;
+  }
+  .right-aligned {
+    text-align: right;
+  }
+  .red-text {
+    color: red;
+  }
+  

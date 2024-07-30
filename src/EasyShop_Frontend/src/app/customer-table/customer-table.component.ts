@@ -39,7 +39,7 @@ export class CustomerTableComponent implements OnInit {
   }
 
   openEditCustomer(customer: Customer): void {
-    this.title = 'Edit';
+    this.title = 'Izmeni podatke o kupcu';
     this.editCustomerService.isAddingCustomer = false;
     this.editCustomerService.setCustomer(customer);
     this.editCustomerService.open();

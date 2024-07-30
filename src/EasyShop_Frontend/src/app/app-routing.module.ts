@@ -12,8 +12,10 @@ import { CustomerTableComponent } from './customer-table/customer-table.componen
 import { ArticleTableComponent } from './article-table/article-table.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { InvoiceReviewComponent } from './invoice-review/invoice-review.component';
+import { ContractComponent } from './contract/contract.component';
+import { NewContractComponent } from './new-contract/new-contract.component';
+import { ContractPrintComponent } from './contract-print/contract-print.component';
 
-//dddddddddddddddddd
 
 const routes: Routes = [
 
@@ -50,7 +52,21 @@ const routes: Routes = [
     component: InvoiceReviewComponent,
      canActivate: [AuthGuard],
   },
-  
+  {
+    path: 'contract',
+    component: ContractComponent,
+     canActivate: [AuthGuard],
+  },
+    {
+      path: 'new-contract',
+      component: NewContractComponent,
+       canActivate: [AuthGuard],
+    },
+    {
+      path: 'contract-print',
+      component: ContractPrintComponent,
+       canActivate: [AuthGuard],
+    },
 ];
 
 @NgModule({

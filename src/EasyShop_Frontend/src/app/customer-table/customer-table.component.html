@@ -1,5 +1,49 @@
 <app-edit-customer [title]="title"></app-edit-customer>
 <hr />
+<div class="table-container">
+<nz-table *ngIf="customers$ | async as customers" [nzData]="customers" #fixedTable
+  [nzScroll]="{ x: '1800px', y: '500px' }">
+  <thead>
+    <tr>
+      <th nz-th [nzWidth]="'50px'">Id</th>
+      <th [nzWidth]="'150px'">Prezime</th>
+      <th [nzWidth]="'150px'">Ime</th>
+      <th [nzWidth]="'150px'">Adresa</th>
+      <th [nzWidth]="'100px'">PU</th>
+      <th [nzWidth]="'80px'">JMBG</th>
+      <th [nzWidth]="'70px'">Telefon</th>
+      <th [nzWidth]="'100px'">Email</th>
+      <th [nzWidth]="'80px'">Actions</th>
+      <th [nzWidth]="'80px'">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of customers">
+      <td class="col-id">{{ customer.id }}</td>
+      <td class="col-prezime">{{ customer.lastName }}</td>
+      <td class="col-ime">{{ customer.firstName }}</td>
+      <td class="col-adresa">{{ customer.address }}</td>
+      <td class="col-pu">{{ customer.pu }}</td>
+      <td class="col-jmbg">{{ customer.jmbg }}</td>
+      <td class="col-telefon">{{ customer.phoneNumber }}</td>
+      <td class="col-email">{{ customer.email }}</td>
+      <td class="col-actions">
+        <nz-divider nzType="vertical"></nz-divider>
+        <button nz-button nzType="primary" (click)="openEditCustomer(customer)">
+          Izmeni
+        </button>
+      </td>
+      <td class="col-actions">
+        <a [routerLink]="['/customer', customer.id]">
+          <button nz-button nzType="primary">Prikazi kupca</button>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+</div>
+<!-- <app-edit-customer [title]="title"></app-edit-customer>
+<hr />
 <nz-table *ngIf="customers$ | async as customers" [nzData]="customers" #fixedTable
   [nzScroll]="{ x: '1000px', y: '500px' }">
   <thead>
@@ -37,4 +81,4 @@
       </td>
     </tr>
   </tbody>
-</nz-table>
+</nz-table> -->

@@ -21,20 +21,24 @@ import java.util.List;
 public class PurchaseContractDto {
     private Long id;
     @NotNull
-    private CustomerDto customerDto;
+    private CustomerDto customer;
     @NotNull
     private Double contractAmount;
     @NotNull
     private Double participation;
     @NotNull
     private LocalDate contractDate = LocalDate.now();
+
+    private LocalDate nextInstalmentDate = LocalDate.now();
+
     private List<InstallmentDto> installments;
 
-    public PurchaseContractDto(Long id, CustomerDto customer, Double contractAmount, Double participation, LocalDate contractDate) {
+    public PurchaseContractDto(Long id, CustomerDto customer, Double contractAmount, Double participation, LocalDate contractDate, LocalDate nextInstalmentDate) {
         this.id = id;
-        this.customerDto = customer;
+        this.customer = customer;
         this.contractAmount = contractAmount;
         this.participation = participation;
         this.contractDate = contractDate;
+        this.nextInstalmentDate = nextInstalmentDate;
     }
 }

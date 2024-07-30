@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -72,17 +72,18 @@ public class InstallmentService implements IInstallmentService {
        return mapper.mapGetEntityToDto(repository.save(installment));
     }
 
+
     @Override
-    public List<InstallmentDto> createInstallments(PurchaseContract contractCreated) {
+    public List<InstallmentDto> createInstallments(PurchaseContract contractCreated, LocalDate nextInstalmentDate) {
         Double installmentAmount = contractCreated.getInstallmentAmount();
         List<Installment> installments =
                 List.of(
                         new Installment(contractCreated, InstallmentOrdinal.FIRST, installmentAmount,
-                                contractCreated.getContractDate().plusMonths(1) ),
+                               nextInstalmentDate ),
                         new Installment(contractCreated, InstallmentOrdinal.SECOND, installmentAmount,
-                                contractCreated.getContractDate().plusMonths(2) ),
+                               nextInstalmentDate.plusMonths(1) ),
                         new Installment(contractCreated, InstallmentOrdinal.THIRD, installmentAmount,
-                                contractCreated.getContractDate().plusMonths(3) )
+                                nextInstalmentDate.plusMonths(2) )
                         );
         return repository
                 .saveAll(installments)

@@ -23,7 +23,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+// Remove the duplicate import of NzDatePickerModule
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
@@ -54,11 +54,17 @@ import { EntryComponent } from './entries/entry/entry.component';
 import { InvoiceReviewComponent } from './invoice-review/invoice-review.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { ContractComponent } from './contract/contract.component';
+import { ContractDrawerComponent } from './contract-drawer/contract-drawer.component';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NewContractComponent } from './new-contract/new-contract.component';
+import { ContractPrintComponent } from './contract-print/contract-print.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-  
+    ContractDrawerComponent,
     LoginFormComponent,
     NavigationComponent,
     UserTableComponent,
@@ -72,7 +78,11 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     ArticleTableComponent,
     EditArticleComponent,
     InvoiceComponent,
-    InvoiceReviewComponent
+    InvoiceReviewComponent,
+    ContractComponent,
+    NewContractComponent,
+    ContractPrintComponent,
+    
   ],
   
   imports: [
@@ -99,7 +109,19 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NzUploadModule,
     CommonModule,
     NzPageHeaderModule,
-    NzIconModule
+    NzIconModule,
+    NzInputModule,
+    NzDatePickerModule,
+    NzNotificationModule,
+    BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NzDrawerModule,
+    NzFormModule,
+    NzInputModule,
+    NzButtonModule,
+    NzDatePickerModule,
+    NzDividerModule,
 
   ],
   providers: [

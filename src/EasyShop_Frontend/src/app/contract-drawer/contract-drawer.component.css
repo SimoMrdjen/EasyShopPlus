@@ -1,0 +1,12 @@
+/* contract-drawer.component.css */
+
+  /* contract-drawer.component.css */
+nz-drawer {
+  display: block;
+}
+.bold-input {
+  font-weight: bold;
+}
+.right-aligned {
+  text-align: right;
+}

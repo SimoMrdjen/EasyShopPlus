@@ -1,0 +1,75 @@
+/* Set the width of each column */
+/* Ensure the table layout is fixed */
+.table-container {
+    overflow-x: auto;
+}
+
+nz-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+/* Style table headers and cells */
+th, td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Define column widths */
+.col-id {
+    width: 10px;
+}
+
+.col-prezime {
+    width: 100px;
+}
+
+.col-ime {
+    width: 10px;
+}
+
+.col-adresa {
+    width: 150px;
+}
+
+.col-pu {
+    width: 100px;
+}
+
+.col-jmbg {
+    width: 120px;
+}
+
+.col-telefon {
+    width: 100px;
+}
+
+.col-email {
+    width: 150px;
+}
+
+.col-actions {
+    width: 100px;
+}
+  
+  .col-pu {
+    width: 100px;
+  }
+  
+  .col-jmbg {
+    width: 120px;
+  }
+  
+  .col-telefon {
+    width: 100px;
+  }
+  
+  .col-email {
+    width: 150px;
+  }
+  
+  .col-actions {
+    width: 100px;
+  }
+  

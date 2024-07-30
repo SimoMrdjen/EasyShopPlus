@@ -16,7 +16,7 @@ public class PurchaseContractMapper {
 
     public PurchaseContract mapCreateDtoToEntity(PurchaseContractDto dto) {
         return new PurchaseContract(
-                customerMapper.mapEditCustomerDtoToEntity(dto.getCustomerDto()),
+                customerMapper.mapEditCustomerDtoToEntity(dto.getCustomer()),
                 dto.getContractAmount(),
                 dto.getParticipation(),
                 dto.getContractDate()
@@ -26,7 +26,7 @@ public class PurchaseContractMapper {
     public PurchaseContract mapDtoToEntity(PurchaseContractDto dto) {
         return new PurchaseContract(
                 dto.getId(),
-                customerMapper.mapEditCustomerDtoToEntity(dto.getCustomerDto()),
+                customerMapper.mapEditCustomerDtoToEntity(dto.getCustomer()),
                 dto.getContractAmount(),
                 dto.getParticipation(),
                 dto.getContractDate()
@@ -39,7 +39,8 @@ public class PurchaseContractMapper {
                 customerMapper.mapEntityToCustomerDto(contract.getCustomer()),
                 contract.getContractAmount(),
                 contract.getParticipation(),
-                contract.getContractDate()
+                contract.getContractDate(),
+                 null
 //                new ArrayList<InstallmentDto>()
         );
     }
