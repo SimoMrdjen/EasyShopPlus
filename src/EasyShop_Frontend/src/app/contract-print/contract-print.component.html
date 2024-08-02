@@ -1,10 +1,81 @@
-<div *ngIf="contract">
-    <h2>Contract Details</h2>
-    <p><strong>Customer Name:</strong> {{ contract.customer?.firstName }} {{ contract.customer?.lastName }}</p>
-    <p><strong>Contract Amount:</strong> {{ contract.contractAmount | number:'1.2-2' }}</p>
-    <p><strong>Participation:</strong> {{ contract.participation | number:'1.2-2' }}</p>
-    <p><strong>Contract Date:</strong> {{ contract.contractDate | date:'mediumDate' }}</p>
-    <p><strong>Next Instalment Date:</strong> {{ contract.nextInstalmentDate | date:'mediumDate' }}</p>
+
+  <div id="print-section" style="font-size: 10pt; line-height: 1.1;" *ngIf="contract">
+    <div style="font-size: 10pt; line-height: 1.3;">
+      <br>
+    <h4 style="text-align: center">UGOVOR O PRODAJI ROBE NA RATE br. {{contract.id}}</h4>
+    <br>
+    <p>Ugovorne strane:</p>
+    <p>1. <strong>STR DUO ZRENJANIN MARIJA MRĐEN PR</strong>, ul. Bagljaš Zapad 5, Zrenjanin, PIB: 100907791, mbr. 54406177
+         koju zastupa Marija Mrđen, u daljem tekstu: PRODAVAC i</p>
+
+    <p>2. <strong>{{contract.customer?.firstName}} {{contract.customer?.lastName}}</strong>, {{contract.customer?.address}},
+    {{contract.customer?.pu}}, JMBG: {{contract.customer?.jmbg}}, telefon: {{contract.customer?.phoneNumber}},
+        email: {{contract.customer?.email}}, u daljem tekstu: <strong>KUPAC.</strong> </p>
+
+    <p class="chlan"  style="text-align: center"><strong>Čl.1</strong> </p>
+    <p>PRODAVAC i KUPAC su postigli dogovor da Kupac može robu iz asortimana Prodavca kupiti na odloženo plaćanje bez kamate,
+        na više mesečnih rata, a da će isplatu vršiti na način i u rokovima utvrđenim ovim Ugovorom.</p>
+
+    <p class="chlan" style="text-align: center"><strong>Čl.2</strong></p>
+    <p>Ugovorne strane saglasno konstatuju da je dana {{ contract.contractDate | date:'dd.MM.yyyy'}}.god.
+        Kupac preuzeo robu u ukupnoj vrednosti od   {{ contract.contractAmount | number:'1.2-2' }} dinara  u
+        prodavnici prodavca STR DUO Bagljaš Zapad 5, Zrenjanin.  Kupac se obavezuje da isplatu iznosa iz predhodnog stava izvrši u 4 rate i to:</p>
+
+    <p style="text-align: center">Učešće  u iznosu od <strong>{{ contract.participation | number:'1.2-2' }}</strong> dinara prilikom preuzimanja robe</p>
+
+    <!-- Display Installments -->
+    <div *ngFor="let installment of contract.installments" style="text-align: center">
+      <p *ngIf="installment.installmentOrdinal === 'FIRST'">
+        1.ratu u iznosu od <strong> {{ installment.installmentAmount | number:'1.2-2' }}</strong> dinara najkasnije do<strong> {{ installment.maturityDate | date:'dd.MM.yyyy' }}.god.</strong>
+      </p>
+      <p *ngIf="installment.installmentOrdinal === 'SECOND'">
+        2.ratu u iznosu od  <strong> {{ installment.installmentAmount | number:'1.2-2' }} </strong>dinara najkasnije do <strong>{{ installment.maturityDate | date:'dd.MM.yyyy' }}.god.</strong>
+      </p>
+      <p *ngIf="installment.installmentOrdinal === 'THIRD'">
+        3.ratu u iznosu od  <strong> {{ installment.installmentAmount | number:'1.2-2' }}</strong>dinara najkasnije do <strong>{{ installment.maturityDate | date:'dd.MM.yyyy' }}.god.</strong>
+      </p>
+      <!-- Add more conditions for additional installments if necessary -->
+    </div>
+
+    <p>Kupac uplatu može izvršiti i na tekući račun br.155-55730-48 kod Halk banke, sa pozivom na broj Ugovora ili na prodajnom mestu prodavca.</p>
+
+    <p class="chlan" style="text-align: center"><strong>Čl.3</strong> </p>
+    <p>
+      U slučaju da Kupac kasni sa isplatom bilo koje rate, ceo dug dospeva u celosti i Prodavac može pokrenuti postupak prinudne naplate,
+
+      pri čemu se dug uvećava za iznos zakonske zatezne kamate od dana dospelosti do dana isplate
+    </p>
+    <p class="chlan" style="text-align: center"><strong>Čl.4</strong> </p>
+    <p>
+      Obe ugovorne strane se obavezuju da uredno vode evidenciju o isplati rata i stanju duga.
+
+      Ukoliko je plaćanje rate izvršeno na prodajnom mestu prodavca, kupcu će biti izdata potvrda o izvršenoj uplati.
+    </p>
+
+    <p class="chlan" style="text-align: center"><strong>Čl.5</strong> </p>
+    <p>
+      Ovaj Ugovor sačinjen je u 2 (dva) istovetna primerka, po 1 (jedan) za svaku Ugovornu stranu.
+    </p>
+
+    <p class="chlan" style="text-align: center"><strong>Čl.6</strong> </p>
+    <p>
+      Ugovor stupa na snagu danom zaključenja, a prestaje da važi isplatom ukupnog iznosa.
+    </p>
+
     <!-- Add more fields as necessary -->
+    <p>U Zrenjaninu, {{ contract.contractDate | date:'dd.MM.yyyy'}}.god.</p>
+
   </div>
-  
+    <h6 class="header-row">
+      <span style="display:inline-block; width: 50px;"></span>
+      <span>KUPAC</span>
+   
+      <span style="display:inline-block; width: 420px;"></span>
+
+      <span>PRODAVAC</span>
+    </h6>
+  </div>
+
+  <div style="display: flex; gap: 10px;">
+    <button nz-button nzType="primary" (click)="printContract()">Print</button>
+  </div>

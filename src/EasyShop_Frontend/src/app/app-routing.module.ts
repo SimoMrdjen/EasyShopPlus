@@ -15,6 +15,9 @@ import { InvoiceReviewComponent } from './invoice-review/invoice-review.componen
 import { ContractComponent } from './contract/contract.component';
 import { NewContractComponent } from './new-contract/new-contract.component';
 import { ContractPrintComponent } from './contract-print/contract-print.component';
+import { InstalmentCustomerComponent } from './instalment-customer/instalment-customer.component';
+import { UnpaidedInstalmentsComponent } from './unpaided-instalments/unpaided-instalments.component';
+import { AllInstalmentsComponent } from './all-instalments/all-instalments.component';
 
 
 const routes: Routes = [
@@ -65,6 +68,21 @@ const routes: Routes = [
     {
       path: 'contract-print',
       component: ContractPrintComponent,
+       canActivate: [AuthGuard],
+    },
+    {
+      path: 'instalment-customer',
+      component: InstalmentCustomerComponent,
+       canActivate: [AuthGuard],
+    },
+    {
+      path: 'unpaid-instalments',
+      component: UnpaidedInstalmentsComponent,
+       canActivate: [AuthGuard],
+    },
+    {
+      path: 'all-instalments',
+      component: AllInstalmentsComponent,
        canActivate: [AuthGuard],
     },
 ];

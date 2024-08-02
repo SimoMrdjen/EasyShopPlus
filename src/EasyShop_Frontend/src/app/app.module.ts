@@ -59,6 +59,10 @@ import { ContractDrawerComponent } from './contract-drawer/contract-drawer.compo
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NewContractComponent } from './new-contract/new-contract.component';
 import { ContractPrintComponent } from './contract-print/contract-print.component';
+import { InstalmentCustomerComponent } from './instalment-customer/instalment-customer.component';
+import { UnpaidedInstalmentsComponent } from './unpaided-instalments/unpaided-instalments.component';
+import { AllInstalmentsComponent } from './all-instalments/all-instalments.component';
+import { EditInstalmentComponent } from './edit-instalment/edit-instalment.component';
 
 
 @NgModule({
@@ -82,6 +86,10 @@ import { ContractPrintComponent } from './contract-print/contract-print.componen
     ContractComponent,
     NewContractComponent,
     ContractPrintComponent,
+    InstalmentCustomerComponent,
+    UnpaidedInstalmentsComponent,
+    AllInstalmentsComponent,
+    EditInstalmentComponent,
     
   ],
   

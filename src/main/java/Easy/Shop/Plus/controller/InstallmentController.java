@@ -9,29 +9,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RequiredArgsConstructor
-@RequestMapping(value = "/api/installments")
+@RequestMapping(value = "/api/instalment")
 @RestController
 public class InstallmentController {
 
     private final InstallmentService service;
 
-    @GetMapping
-    public List<InstallmentDto> getInstallments() {
-        return service
-                .getAll();
-    }
+//    @GetMapping
+//    public List<InstallmentDto> getInstallments() {
+//        return service
+//                .getAll();
+//    }
 
-    @GetMapping(value = "{id}")
-    public InstallmentDto getInstallment(@PathVariable(name = "id") Long id) throws Exception {
-        return service
-                .getById(id);
-    }
+//    @GetMapping(value = "{id}")
+//    public InstallmentDto getInstallment(@PathVariable(name = "id") Long id) throws Exception {
+//        return service
+//                .getById(id);
+//    }
 
-    @GetMapping(value = "/customer/{customerId}")
+    @GetMapping(value = "/unpaid")
     public List<InstallmentDto> getAllUnpaidInstallmentsOfCustomer
-            (@PathVariable(name = "customerId") Long customerId) {
+            (@RequestParam(name = "customerId") Long customerId) {
         return service
                 .getUnpaidInstallmentsByCustomerId(customerId);
+    }
+
+    @GetMapping(value = "/customer")
+    public List<InstallmentDto> getAllInstallmentsOfCustomer
+            (@RequestParam(name = "customerId") Long customerId) {
+        return service
+                .getAllInstallmentsByCustomerId(customerId);
     }
 
     @PutMapping(value = "/{id}")

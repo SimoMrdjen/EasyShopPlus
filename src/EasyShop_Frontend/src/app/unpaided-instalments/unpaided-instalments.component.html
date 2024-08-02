@@ -1,0 +1,33 @@
+<app-edit-instalment [title]="title"></app-edit-instalment>
+<div class="table-container">
+    <nz-table *ngIf="instalments$ | async as instalments" 
+    [nzData]="instalments" #fixedTable [nzScroll]="{ x: '1000px', y: '500px' }">
+      <thead>
+        <tr>
+          <th nz-th [nzWidth]="'30px'">Id</th>
+          <th [nzWidth]="'30px'">Broj ugovora</th>
+          <th [nzWidth]="'50px'">Iznos rate</th>
+          <th [nzWidth]="'40px'">Rata</th>
+          <th [nzWidth]="'40px'">Datum dospeca</th>
+          <th [nzWidth]="'50px'">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let instalment of instalments">
+          <td class="col-id">{{ instalment.id }}</td>
+          <td class="col-prezime">{{ instalment.purchaseContractDto?.id }}</td>
+          <td class="col-ime">{{ instalment.installmentAmount }}</td>
+          <td class="col-adresa">{{ instalment.installmentOrdinal }}</td>
+          <td class="col-lk">{{ instalment.maturityDate }}</td>
+  
+         
+          <td class="col-actions">
+            <nz-divider nzType="vertical"></nz-divider>
+            <button nz-button nzType="primary" (click)="editInstalment(instalment)">
+                Placanje rate   
+             </button>
+          </td>
+
+        </tr>
+      </tbody>
+    </nz-table>

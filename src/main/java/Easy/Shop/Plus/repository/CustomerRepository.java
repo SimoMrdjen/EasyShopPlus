@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
-    List<Customer> findByLastNameContainingIgnoreCase(String lastNameLike);
+    // CustomerRepository.java
+    List<Customer> findByLastNameStartingWithIgnoreCase(String lastNameLike);
     Optional<Customer> findByJmbg(String jmbg);
 }

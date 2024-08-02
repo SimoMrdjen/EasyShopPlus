@@ -30,6 +30,10 @@ export class CustomerService {
     return this.http.get<Customer[]>(this.url);
   }
 
+  getCustomersLike(): Observable<Customer[]> {
+    return this.http.get<Customer[]>(this.url);
+  }
+
   getParams(): HttpParams {
     let params = new HttpParams();
     if (this.customer?.id) {

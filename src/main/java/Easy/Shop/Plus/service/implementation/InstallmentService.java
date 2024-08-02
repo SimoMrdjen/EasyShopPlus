@@ -91,5 +91,13 @@ public class InstallmentService implements IInstallmentService {
                 .map(mapper::mapGetEntityToDto)
                 .collect(Collectors.toList());
     }
+
+    public List<InstallmentDto> getAllInstallmentsByCustomerId(Long customerId) {
+        return repository
+                .findAllByPurchaseContractCustomerId(customerId)
+                .stream()
+                .map(mapper::mapGetEntityToDto)
+                .collect(Collectors.toList());
+    }
 }
 

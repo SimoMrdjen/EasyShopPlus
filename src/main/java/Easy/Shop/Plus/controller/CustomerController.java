@@ -24,9 +24,12 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @GetMapping
-    public List<CustomerDto> getAllCustomers() {
-        return customerService
-                .getAllCustomers();
+    public List<CustomerDto> getAllCustomers(@RequestParam(required = false) String lastName) {
+        if (lastName != null) {
+            return customerService.getCustomersLike(lastName);
+        } else {
+            return customerService.getAllCustomers();
+        }
     }
 
     @GetMapping(value = "/{id}")
@@ -35,11 +38,11 @@ public class CustomerController {
                 .getCustomer(id);
     }
 
-    @GetMapping("/like")
-    public List<CustomerDto> getCustomerByLastNameLike(@RequestParam String lastNameLike) {
-        return customerService
-                .getCustomersLike(lastNameLike);
-    }
+//    @GetMapping("/{lastNameLike}")
+//    public List<CustomerDto> getCustomerByLastNameLike(@PathVariable(name = "lastNameLike")String lastNameLike) {
+//        return customerService
+//                .getCustomersLike(lastNameLike);
+//    }
 
     @PostMapping
     public CustomerDto addCustomer(@Valid @RequestBody CustomerDto customerDto) throws Exception {

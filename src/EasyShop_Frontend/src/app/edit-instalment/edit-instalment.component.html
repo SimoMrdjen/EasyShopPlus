@@ -1,0 +1,137 @@
+
+<nz-drawer
+  [nzBodyStyle]="{ overflow: 'auto' }"
+  [nzMaskClosable]="false"
+  [nzWidth]="720"
+  [nzVisible]="visible"
+  nzTitle="{{ title }}"
+  [nzFooter]="footerTpl"
+  (nzOnClose)="close()"
+>
+  <form nz-form *nzDrawerContent>
+    <div nz-row [nzGutter]="8">
+     
+    </div>
+
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Broj ugovora</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              [ngModel]="instalment?.purchaseContractDto?.id"
+              (ngModelChange)="instalment && (instalment.purchaseContractDto.id = $event)"
+              placeholder="Unesi prezime kupca"
+              name="purchaseContractDto"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Ime</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              [ngModel]=" instalment?.installmentAmount "
+              (ngModelChange)=" instalment && ( instalment.installmentAmount  = $event)"
+              placeholder="Unesi ime kupca"
+              name="installmentAmount "
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Adresa</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              [ngModel]="instalment?.installmentOrdinal"
+              (ngModelChange)="instalment && (instalment.installmentOrdinal = $event)"
+              placeholder="Unesi adresu kupca"
+              name="instalment.installmentOrdinal"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>JMBG</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              [ngModel]="instalment?.installmentOrdinal"
+              (ngModelChange)="instalment && (instalment.maturityDate = $event)"
+              placeholder="Unesi JMBG kupca"
+              name="instalment.maturityDate "
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Uplacen</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              [ngModel]="instalment?.paidAmount"
+              (ngModelChange)="instalment && (instalment.paidAmount = $event)"
+              placeholder="Unesi iznos uplate"
+              name="paidAmount"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+
+    
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Nacin placanja</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              [ngModel]="instalment?.paymentMethod"
+              (ngModelChange)="instalment && (instalment.paymentMethod = $event)"
+              placeholder="Unesi PU izdavaoca LK kupca"
+              name="paymentMethod"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>  
+
+ 
+
+   
+  </form>
+
+  <ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px" (click)="close()">
+        Cancel
+      </button>
+      <button nz-button nzType="primary" (click)="editInstalment()">
+        Submit
+      </button>
+   
+    </div>
+  </ng-template>
+</nz-drawer>
+

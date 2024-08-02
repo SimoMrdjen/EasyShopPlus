@@ -1,0 +1,51 @@
+
+<div nz-row [nzGutter]="8">
+    <div nz-col nzSpan="6">   
+    <input   nz-input type="text" [(ngModel)]="searchTerm" placeholder="Pretrazi po delu prezimena" />
+    </div>
+    <button nz-button nzType="primary" (click)="searchCustomers()">Pretrazi</button>
+  </div>
+  <hr />
+  <div class="table-container">
+    <nz-table *ngIf="customers$ | async as customers" 
+    [nzData]="customers" #fixedTable [nzScroll]="{ x: '1800px', y: '500px' }">
+      <thead>
+        <tr>
+          <th nz-th [nzWidth]="'30px'">Id</th>
+          <th [nzWidth]="'60px'">Prezime</th>
+          <th [nzWidth]="'50px'">Ime</th>
+          <th [nzWidth]="'160px'">Adresa</th>
+
+          <th [nzWidth]="'55px'">JMBG</th>
+          <th [nzWidth]="'50px'">Telefon</th>
+          <th [nzWidth]="'60px'">Email</th>
+          <th [nzWidth]="'55px'">Actions</th>
+          <th [nzWidth]="'40px'">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let customer of customers">
+          <td class="col-id">{{ customer.id }}</td>
+          <td class="col-prezime">{{ customer.lastName }}</td>
+          <td class="col-ime">{{ customer.firstName }}</td>
+          <td class="col-adresa">{{ customer.address }}</td>
+
+          <td class="col-jmbg">{{ customer.jmbg }}</td>
+          <td class="col-telefon">{{ customer.phoneNumber }}</td>
+          <td class="col-email">{{ customer.email }}</td>
+          <td class="col-actions">
+            <nz-divider nzType="vertical"></nz-divider>
+            <button nz-button nzType="primary" (click)="getUnpaidedInstalments(customer)">
+              Neplacene rate
+            </button>
+          </td>
+          <td class="col-actions">
+            <button nz-button nzType="primary" (click)="getAllInstalments(customer)">
+             Prikazi sve rate
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+  

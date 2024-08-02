@@ -5,60 +5,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { BASE_URL } from '../constants';
 import { Customer } from '../models/customer.model';
 
-/*
-@Injectable({
-  providedIn: 'root'
-})
-export class EditCustomerService {
-
-  private readonly url = BASE_URL + '/customer';
-  public customer: Customer | null = null;
-  private visibilitySubject = new BehaviorSubject<boolean>(false);
-  public visibility$ = this.visibilitySubject.asObservable();
-  public isAddingCustomer: boolean = true;
-
-  constructor(private http: HttpClient,
-    private router: Router) {}
-
-  setCustomer(customer: Customer): void {
-    this.customer = customer;
-  }
-
-  getCustomer(): Customer | null {
-    return this.customer;
-  }
-
-  editCustomer(customer: Customer): Observable<Customer> {
-    return this.http.put<Customer>(`${this.url}/${customer.id}`, customer);
-  }
-
-  addCustomer(customer: Customer): Observable<Customer> {
-    return this.http.post<Customer>(this.url, customer);
-  }
-
-  getCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.url);
-  }
-
-  getCustomersPaginated(pageIndex: number = 1, pageSize: number = 10): Observable<Customer[]> {
-    const params = new HttpParams()
-      .set('pageIndex', pageIndex.toString())
-      .set('pageSize', pageSize.toString());
-    return this.http.get<Customer[]>(this.url, { params });
-  }
-
-  open(): void {
-    this.visibilitySubject.next(true);
-  }
-
-  close(): void {
-    this.visibilitySubject.next(false);
-  }
-}
-
-*/
-
-
 
 
 @Injectable({
@@ -121,6 +67,11 @@ export class EditCustomerService implements OnInit {
       .set('pageIndex', pageIndex.toString())
       .set('pageSize', pageSize.toString());
     return this.http.get<Customer[]>(this.url);
+  }
+
+  getCustomersLike(lastName: string): Observable<Customer[]> {
+    const params = new HttpParams().set('lastName', lastName);
+    return this.http.get<Customer[]>(`${this.url}`, { params });
   }
 
   //methods for Drawer

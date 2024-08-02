@@ -40,11 +40,12 @@ public class CustomerService implements ICustomerService {
     @Override
     public List<CustomerDto> getCustomersLike(String lastNameLike) {
         return customerRepository
-                .findByLastNameContainingIgnoreCase(lastNameLike)
+                .findByLastNameStartingWithIgnoreCase(lastNameLike)
                 .stream()
                 .map(customerMapper::mapEntityToCustomerDto)
                 .collect(Collectors.toList());
     }
+
 
     @Override
     public CustomerDto createCustomer(CustomerDto customerDto) throws Exception {
