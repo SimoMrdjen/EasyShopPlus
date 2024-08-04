@@ -1,3 +1,4 @@
+// src/app/edit-instalment/edit-instalment.component.ts
 import { Component, Input } from '@angular/core';
 import { Instalment } from '../models/instalment.model';
 import { Subscription } from 'rxjs';
@@ -7,14 +8,12 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 @Component({
   selector: 'app-edit-instalment',
   templateUrl: './edit-instalment.component.html',
-  styleUrls: ['./edit-instalment.component.css']
+  styleUrls: ['./edit-instalment.component.css'],
 })
 export class EditInstalmentComponent {
-
   visible = false;
   instalment: Instalment | null = null;
   private visibilitySubscription: Subscription | undefined;
-  //roles = Object.keys(Role).filter((k) => typeof Role[k as any] === 'number');
   @Input() title: string = '';
 
   constructor(
@@ -66,4 +65,39 @@ export class EditInstalmentComponent {
     this.instalmentService.setInstalment(new Instalment());
   }
 
+  updatePurchaseContractId(value: any) {
+    if (this.instalment && this.instalment.purchaseContractDto) {
+      this.instalment.purchaseContractDto.id = value;
+    }
+  }
+
+  updateInstallmentAmount(value: any) {
+    if (this.instalment) {
+      this.instalment.installmentAmount = value;
+    }
+  }
+
+  updateInstallmentOrdinal(value: any) {
+    if (this.instalment) {
+      this.instalment.installmentOrdinal = value;
+    }
+  }
+
+  updateMaturityDate(value: any) {
+    if (this.instalment) {
+      this.instalment.maturityDate = value;
+    }
+  }
+
+  updatePaidAmount(value: any) {
+    if (this.instalment) {
+      this.instalment.paidAmount = value;
+    }
+  }
+
+  updatePaymentMethod(value: any) {
+    if (this.instalment) {
+      this.instalment.paymentMethod = value;
+    }
+  }
 }

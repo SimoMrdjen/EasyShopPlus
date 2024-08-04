@@ -1,4 +1,4 @@
-
+<!-- src/app/edit-instalment/edit-instalment.component.html -->
 <nz-drawer
   [nzBodyStyle]="{ overflow: 'auto' }"
   [nzMaskClosable]="false"
@@ -9,9 +9,7 @@
   (nzOnClose)="close()"
 >
   <form nz-form *nzDrawerContent>
-    <div nz-row [nzGutter]="8">
-     
-    </div>
+    <div nz-row [nzGutter]="8"></div>
 
     <div nz-row [nzGutter]="8">
       <div nz-col nzSpan="12">
@@ -21,7 +19,7 @@
             <input
               nz-input
               [ngModel]="instalment?.purchaseContractDto?.id"
-              (ngModelChange)="instalment && (instalment.purchaseContractDto.id = $event)"
+              (ngModelChange)="updatePurchaseContractId($event)"
               placeholder="Unesi prezime kupca"
               name="purchaseContractDto"
             />
@@ -37,10 +35,10 @@
           <nz-form-control>
             <input
               nz-input
-              [ngModel]=" instalment?.installmentAmount "
-              (ngModelChange)=" instalment && ( instalment.installmentAmount  = $event)"
+              [ngModel]="instalment?.installmentAmount"
+              (ngModelChange)="updateInstallmentAmount($event)"
               placeholder="Unesi ime kupca"
-              name="installmentAmount "
+              name="installmentAmount"
             />
           </nz-form-control>
         </nz-form-item>
@@ -55,7 +53,7 @@
             <input
               nz-input
               [ngModel]="instalment?.installmentOrdinal"
-              (ngModelChange)="instalment && (instalment.installmentOrdinal = $event)"
+              (ngModelChange)="updateInstallmentOrdinal($event)"
               placeholder="Unesi adresu kupca"
               name="instalment.installmentOrdinal"
             />
@@ -71,10 +69,10 @@
           <nz-form-control>
             <input
               nz-input
-              [ngModel]="instalment?.installmentOrdinal"
-              (ngModelChange)="instalment && (instalment.maturityDate = $event)"
+              [ngModel]="instalment?.maturityDate"
+              (ngModelChange)="updateMaturityDate($event)"
               placeholder="Unesi JMBG kupca"
-              name="instalment.maturityDate "
+              name="instalment.maturityDate"
             />
           </nz-form-control>
         </nz-form-item>
@@ -89,7 +87,7 @@
             <input
               nz-input
               [ngModel]="instalment?.paidAmount"
-              (ngModelChange)="instalment && (instalment.paidAmount = $event)"
+              (ngModelChange)="updatePaidAmount($event)"
               placeholder="Unesi iznos uplate"
               name="paidAmount"
             />
@@ -98,8 +96,6 @@
       </div>
     </div>
 
-
-    
     <div nz-row [nzGutter]="8">
       <div nz-col nzSpan="12">
         <nz-form-item>
@@ -108,18 +104,14 @@
             <input
               nz-input
               [ngModel]="instalment?.paymentMethod"
-              (ngModelChange)="instalment && (instalment.paymentMethod = $event)"
+              (ngModelChange)="updatePaymentMethod($event)"
               placeholder="Unesi PU izdavaoca LK kupca"
               name="paymentMethod"
             />
           </nz-form-control>
         </nz-form-item>
       </div>
-    </div>  
-
- 
-
-   
+    </div>
   </form>
 
   <ng-template #footerTpl>
@@ -130,8 +122,6 @@
       <button nz-button nzType="primary" (click)="editInstalment()">
         Submit
       </button>
-   
     </div>
   </ng-template>
 </nz-drawer>
-

@@ -8,25 +8,25 @@ import { InstalmentService } from '../services/instalment.service';
 @Component({
   selector: 'app-unpaided-instalments',
   templateUrl: './unpaided-instalments.component.html',
-  styleUrls: ['./unpaided-instalments.component.css']
+  styleUrls: ['./unpaided-instalments.component.css'],
 })
 export class UnpaidedInstalmentsComponent {
-
   title: string = '';
   public instalments$!: Observable<Instalment[]>;
   isDrawerVisible = false;
 
   constructor(
-   
     private purchaseContractService: PurchaseContractService,
     private router: Router,
-    private instalmentService: InstalmentService, 
+    private instalmentService: InstalmentService
   ) {
-      this.instalments$ = this.instalmentService.getInstalmentsByCustomerUnpaid(instalmentService.customer.id); // Fetch all initially or leave blank if no search term
+    this.instalments$ = this.instalmentService.getInstalmentsByCustomerUnpaid(
+      instalmentService.customer.id
+    ); // Fetch all initially or leave blank if no search term
   }
 
   editInstalment(instalment: Instalment): void {
+    this.isDrawerVisible = true;
     //this.router.navigate(['/edit-instalment'], { state: { instalment } });
   }
-
 }
