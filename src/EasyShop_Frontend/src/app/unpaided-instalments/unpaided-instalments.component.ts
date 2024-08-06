@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { PurchaseContractService } from '../services/purchase-contract.service';
 import { Router } from '@angular/router';
 import { InstalmentService } from '../services/instalment.service';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-unpaided-instalments',
@@ -26,7 +28,10 @@ export class UnpaidedInstalmentsComponent {
   }
 
   editInstalment(instalment: Instalment): void {
-    this.isDrawerVisible = true;
+        this.title = 'Unesi uplatu rate';
+       // this.instalmentService.is = false;
+        this.instalmentService.instalment = instalment ;
+        this.instalmentService.open();
     //this.router.navigate(['/edit-instalment'], { state: { instalment } });
   }
 }

@@ -63,6 +63,10 @@ import { InstalmentCustomerComponent } from './instalment-customer/instalment-cu
 import { UnpaidedInstalmentsComponent } from './unpaided-instalments/unpaided-instalments.component';
 import { AllInstalmentsComponent } from './all-instalments/all-instalments.component';
 import { EditInstalmentComponent } from './edit-instalment/edit-instalment.component';
+import { DecimalPipe } from '@angular/common';
+import { PaymentConfirmationComponent } from './payment-confirmation/payment-confirmation.component';
+// Remove the invalid import statement
+
 
 
 @NgModule({
@@ -90,7 +94,7 @@ import { EditInstalmentComponent } from './edit-instalment/edit-instalment.compo
     UnpaidedInstalmentsComponent,
     AllInstalmentsComponent,
     EditInstalmentComponent,
-    
+    PaymentConfirmationComponent, 
   ],
   
   imports: [
@@ -130,9 +134,11 @@ import { EditInstalmentComponent } from './edit-instalment/edit-instalment.compo
     NzButtonModule,
     NzDatePickerModule,
     NzDividerModule,
+    DecimalPipe,
+    //NzOptionModule
 
   ],
-  providers: [
+  providers: [DecimalPipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

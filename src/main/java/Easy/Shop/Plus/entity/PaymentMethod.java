@@ -4,5 +4,8 @@ public enum PaymentMethod {
     CASH,
     CHECK,
     CARD,
-    BANK_PAYMEN
+    BANK_PAYMEN,
+    GOTOVINA,
+    UPLATA_TR,
+    KARTICA
 }

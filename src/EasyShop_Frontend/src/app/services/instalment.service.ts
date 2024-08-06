@@ -54,18 +54,17 @@ export class InstalmentService {
       return this.http.get<Instalment[]>(`${this.url}/customer`,options);
     }
 
-    editInstalment(instalment: Instalment): Observable<Instalment> {
-      console.log('editUser is running');
-      const options = {
-        params: this.getParams(instalment.id || 0),
-        responseType: 'json' as 'json',
-      };
-      return this.http.put<Instalment>(this.url, instalment, options);
-    }
+  editInstalment(instalment: Instalment): Observable<Instalment> {
+    console.log('editInstalment is running');
+    const urlWithId = `${this.url}/${instalment.id}`;
+    return this.http.put<Instalment>(urlWithId, instalment);
+  }
+
 
     setInstalment(instalment: Instalment): void {
       this.instalment = instalment;
     }
+
     open(): void {
       this.visibilitySubject.next(true);
     }

@@ -4,6 +4,8 @@ import { Instalment } from '../models/instalment.model';
 import { Subscription } from 'rxjs';
 import { InstalmentService } from '../services/instalment.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { DecimalPipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-instalment',
@@ -11,14 +13,16 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
   styleUrls: ['./edit-instalment.component.css'],
 })
 export class EditInstalmentComponent {
-  visible = false;
+  @Input() visible: boolean = false;
   instalment: Instalment | null = null;
   private visibilitySubscription: Subscription | undefined;
   @Input() title: string = '';
 
   constructor(
     private instalmentService: InstalmentService,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    private decimalPipe: DecimalPipe,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -55,6 +59,7 @@ export class EditInstalmentComponent {
             'Uspesno!',
             `Uplata od ${response.installmentAmount} din. je snimljena!`
           );
+          this.router.navigate(['/payment-confirmation'], { state: { instalment: response } });
         },
         error: (err) => {
           this.notification.create('error', 'Error!', `Error in editing!`);
@@ -71,10 +76,14 @@ export class EditInstalmentComponent {
     }
   }
 
-  updateInstallmentAmount(value: any) {
+  updateInstallmentAmount(value: string): void {
     if (this.instalment) {
-      this.instalment.installmentAmount = value;
+      this.instalment.installmentAmount = parseFloat(value.replace(/,/g, ''));
     }
+  }
+
+  get formattedInstallmentAmount(): string {
+    return this.decimalPipe.transform(this.instalment?.installmentAmount, '1.2-2') || '';
   }
 
   updateInstallmentOrdinal(value: any) {
@@ -91,8 +100,12 @@ export class EditInstalmentComponent {
 
   updatePaidAmount(value: any) {
     if (this.instalment) {
-      this.instalment.paidAmount = value;
+      this.instalment.paidAmount = parseFloat(value.replace(/,/g, ''));
     }
+  }
+
+  get formattedPaidAmount(): string {
+    return this.decimalPipe.transform(this.instalment?.paidAmount, '1.2-2') || '';
   }
 
   updatePaymentMethod(value: any) {

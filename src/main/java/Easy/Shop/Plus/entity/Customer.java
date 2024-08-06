@@ -2,12 +2,7 @@ package Easy.Shop.Plus.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
@@ -21,6 +16,7 @@ import static jakarta.persistence.CascadeType.ALL;
 @EqualsAndHashCode
 @Getter
 @Setter
+@Builder
 public class Customer {
 
     @Id

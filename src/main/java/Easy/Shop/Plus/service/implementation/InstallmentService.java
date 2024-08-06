@@ -65,11 +65,12 @@ public class InstallmentService implements IInstallmentService {
 
     @Override
     public InstallmentDto updateInstallment(InstallmentDto dto, Long id) throws Exception {
-        if (!repository.existsById(id)) {
-            throw new Exception(INSTALLMENT_NOT_FOUND);
-        }
-        Installment installment = mapper.mapEditDtoToEntity(dto);
-       return mapper.mapGetEntityToDto(repository.save(installment));
+        Installment installment = repository
+                .findById(id)
+                .orElseThrow(() -> new Exception(INSTALLMENT_NOT_FOUND));
+        Installment saved = repository.save(mapper.mapPutDtoToEntity(dto, installment));
+        return mapper
+                .mapGetEntityToDto(saved);
     }
 
 

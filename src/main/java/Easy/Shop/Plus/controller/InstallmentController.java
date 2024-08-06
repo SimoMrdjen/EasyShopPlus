@@ -15,18 +15,6 @@ public class InstallmentController {
 
     private final InstallmentService service;
 
-//    @GetMapping
-//    public List<InstallmentDto> getInstallments() {
-//        return service
-//                .getAll();
-//    }
-
-//    @GetMapping(value = "{id}")
-//    public InstallmentDto getInstallment(@PathVariable(name = "id") Long id) throws Exception {
-//        return service
-//                .getById(id);
-//    }
-
     @GetMapping(value = "/unpaid")
     public List<InstallmentDto> getAllUnpaidInstallmentsOfCustomer
             (@RequestParam(name = "customerId") Long customerId) {
@@ -43,7 +31,7 @@ public class InstallmentController {
 
     @PutMapping(value = "/{id}")
     public InstallmentDto editInstallment(@RequestBody InstallmentDto dto,
-                                          @PathVariable(value = "id") Long id) throws Exception {
+                                          @PathVariable(name = "id") Long id) throws Exception {
         return service
                 .updateInstallment(dto, id);
     }

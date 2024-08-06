@@ -18,6 +18,7 @@ import { ContractPrintComponent } from './contract-print/contract-print.componen
 import { InstalmentCustomerComponent } from './instalment-customer/instalment-customer.component';
 import { UnpaidedInstalmentsComponent } from './unpaided-instalments/unpaided-instalments.component';
 import { AllInstalmentsComponent } from './all-instalments/all-instalments.component';
+import { PaymentConfirmationComponent } from './payment-confirmation/payment-confirmation.component';
 
 
 const routes: Routes = [
@@ -83,6 +84,11 @@ const routes: Routes = [
     {
       path: 'all-instalments',
       component: AllInstalmentsComponent,
+       canActivate: [AuthGuard],
+    },
+    {
+      path: 'payment-confirmation',
+      component: PaymentConfirmationComponent,
        canActivate: [AuthGuard],
     },
 ];

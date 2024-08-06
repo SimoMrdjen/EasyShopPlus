@@ -5,6 +5,8 @@ import Easy.Shop.Plus.entity.Installment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 @Component
 @RequiredArgsConstructor
 public class InstallmentMapper {
@@ -44,4 +46,18 @@ public class InstallmentMapper {
                 installment.getPaymentDate(),
                 installment.getPaymentMethod());
     }
+
+    public Installment mapPutDtoToEntity(InstallmentDto dto, Installment installment) {
+        return Installment.builder()
+                .id(installment.getId())
+                .purchaseContract(installment.getPurchaseContract())
+                .installmentOrdinal(installment.getInstallmentOrdinal())
+                .installmentAmount(installment.getInstallmentAmount())
+                .maturityDate(installment.getMaturityDate())
+                .paidAmount(dto.getPaidAmount())
+                .paymentDate(LocalDate.now())
+                .paymentMethod(dto.getPaymentMethod())
+                .build();
+    }
+
 }

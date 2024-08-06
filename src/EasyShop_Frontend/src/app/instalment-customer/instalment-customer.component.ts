@@ -6,6 +6,8 @@ import { CustomerService } from '../services/customer.service';
 import { PurchaseContractService } from '../services/purchase-contract.service';
 import { Router } from '@angular/router';
 import { InstalmentService } from '../services/instalment.service';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-instalment-customer',
@@ -47,10 +49,17 @@ export class InstalmentCustomerComponent {
     this.customers$ = this.editCustomerService.getCustomersLike(this.searchTerm);
   }
 
+//   getUnpaidedInstalments(customer: Customer): void {
+//   this.instalmentService.customer = customer;
+//     this.router.navigate(['/unpaid-instalments'], { state: { customer } });
+//   }
+
   getUnpaidedInstalments(customer: Customer): void {
+    console.log('getUnpaidedInstalments() is running');
   this.instalmentService.customer = customer;
-    this.router.navigate(['/unpaid-instalments'], { state: { customer } });
+     this.router.navigate(['/unpaid-instalments'], { state: { customer } });
   }
+
 
   getAllInstalments(customer: Customer): void {
     this.instalmentService.customer = customer;

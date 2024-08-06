@@ -1,0 +1,11 @@
+<div *ngIf="instalment">
+    <h2>Confirmation of Payment</h2>
+    <p>Instalment ID: {{ instalment.id }}</p>
+    <p>Contract ID: {{ instalment.purchaseContractDto?.id }}</p>
+    <p>Amount: {{ instalment.installmentAmount | number:'1.2-2' }} din.</p>
+    <p>Ordinal: {{ instalment.installmentOrdinal }}</p>
+    <p>Maturity Date: {{ instalment.maturityDate | date:'dd.MM.yyyy' }}</p>
+    <p>Paid Amount: {{ instalment.paidAmount | number:'1.2-2' }}</p>
+    <p>Payment Method: {{ instalment.paymentMethod }}</p>
+  </div>
+  
