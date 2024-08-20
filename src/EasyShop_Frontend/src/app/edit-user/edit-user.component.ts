@@ -1,16 +1,9 @@
-import {
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { EditUserService } from '../services/edit-user.service';
 import { User } from '../models/user.model';
 import { Subscription } from 'rxjs';
-import { UserService } from '../services/user.service';
-import { Role } from '../models/role.model';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { Role } from '../models/role.model';
 
 @Component({
   selector: 'app-edit-user',
@@ -18,24 +11,22 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 })
 export class EditUserComponent implements OnInit, OnDestroy {
   visible = false;
-  user: User | null = null;
+  user: User = new User(); // Initialize with a new User object
   private visibilitySubscription: Subscription | undefined;
-  roles = Object.keys(Role).filter((k) => typeof Role[k as any] === 'number');
+  roles = Object.values(Role).filter((value) => typeof value === 'string');
   @Input() title: string = '';
 
   constructor(
     private editUserService: EditUserService,
-    private userService: UserService,
     private notification: NzNotificationService
   ) {}
 
   ngOnInit(): void {
-    console.log('on init in EditUserComponent');
     this.visibilitySubscription = this.editUserService.visibility$.subscribe(
       (isVisible) => {
         this.visible = isVisible;
         if (this.visible) {
-          this.user = this.editUserService.user;
+          this.user = this.editUserService.user || new User(); // Ensure user is not null
         }
       }
     );
@@ -53,65 +44,58 @@ export class EditUserComponent implements OnInit, OnDestroy {
     this.editUserService.open();
   }
 
-  editOrAddUser() {
+  editOrAddUser(): void {
     if (this.editUserService.isAddingUser) {
       this.addUser();
     } else {
       this.editUser();
-      this.editUserService.isAddingUser = true;
     }
   }
 
-  editUser() {
+  editUser(): void {
+
     if (this.user) {
+      this.user.role =  Role.USER;
       this.editUserService.editUser(this.user).subscribe({
         next: (response) => {
-          console.log(response);
           this.notification.create(
             'success',
-            'Succesfull',
-            `${response.email} is succesfuly edited!`
+            'Successful',
+            `${response.email} is successfully edited!`
           );
+          this.close();
         },
         error: (err) => {
           this.notification.create('error', 'Error!', `Error in editing!`);
         },
       });
     }
-    this.close();
-    this.editUserService.setUser(new User());
   }
 
-  addUser() {
+  addUser(): void {
     if (this.user) {
+      
       this.editUserService.addUser(this.user).subscribe({
         next: (response) => {
-          console.log(response);
           this.notification.create(
             'success',
-            'Succesfull',
-            `${response.email} is succesfuly added!`
+            'Successful',
+            `${response.email} is successfully added!`
           );
+          this.close();
         },
         error: (err) => {
-          alert(err.message);
+          this.notification.create('error', 'Error!', `Error in adding!`);
         },
       });
     }
-    this.close();
-    this.editUserService.setUser(new User());
   }
 
-  openAddUser() {
+  openAddUser(): void {
     this.title = 'Create';
     this.editUserService.isAddingUser = true;
-    this.editUserService.user = new User();
+    this.editUserService.setUser(new User());
+    this.user = this.editUserService.user || new User();
     this.open();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['title']) {
-      console.log('addingUser changed to:', changes['addingUser'].currentValue);
-    }
   }
 }

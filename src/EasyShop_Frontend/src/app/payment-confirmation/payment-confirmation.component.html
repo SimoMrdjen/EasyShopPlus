@@ -1,11 +1,23 @@
-<div *ngIf="instalment">
-    <h2>Confirmation of Payment</h2>
-    <p>Instalment ID: {{ instalment.id }}</p>
-    <p>Contract ID: {{ instalment.purchaseContractDto?.id }}</p>
-    <p>Amount: {{ instalment.installmentAmount | number:'1.2-2' }} din.</p>
-    <p>Ordinal: {{ instalment.installmentOrdinal }}</p>
-    <p>Maturity Date: {{ instalment.maturityDate | date:'dd.MM.yyyy' }}</p>
-    <p>Paid Amount: {{ instalment.paidAmount | number:'1.2-2' }}</p>
-    <p>Payment Method: {{ instalment.paymentMethod }}</p>
+<div id="print-section" style="font-size: 9pt; line-height: 1.1; text-align: center;   width: 70mm;" *ngIf="instalment">
+     <div style="font-size: 9pt;
+     line-height: 1.1;
+     text-align: center;
+     width: 70mm;
+     padding: 5mm;
+     box-sizing: border-box;">
+    <h4>Potvrda o uplati</h4>
+ 
+    <p style="text-align: center">Uplata za ugovor br. {{ instalment.purchaseContractDto?.id }} od 
+         {{ instalment.purchaseContractDto?.contractDate | date:'dd.MM.yyyy' }} god. </p>
+    <p style="text-align: center">Kupac: {{ instalment.purchaseContractDto?.customer?.lastName }}
+         {{ instalment.purchaseContractDto?.customer?.firstName }}</p>
+    <p style="text-align: center">Iznos rate: {{ instalment.installmentAmount | number:'1.2-2' }} din. 
+        Rata br.: {{ instalment.installmentOrdinal }}</p>
+    <p style="text-align: center">Datum dospelosti rate: {{ instalment.maturityDate | date:'dd.MM.yyyy' }}</p>
+    <p style="text-align: center">Plaćeno: <strong>{{ instalment.paidAmount | number:'1.2-2' }} din.</strong> </p>
+    <p style="text-align: center">Datum uplate: {{ instalment.paymentDate | date:'dd.MM.yyyy'}}</p>
   </div>
-  
+</div>
+  <div style="display: flex; gap: 10px;">
+     <button nz-button nzType="primary" (click)="printConfirmation()">Print</button>
+   </div>

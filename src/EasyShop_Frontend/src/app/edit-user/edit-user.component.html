@@ -10,13 +10,11 @@
 >
   <form nz-form *nzDrawerContent>
     <div nz-row [nzGutter]="8">
- 
-
       <div nz-col nzSpan="12">
         <nz-form-item>
-          <nz-form-label>Name</nz-form-label>
+          <nz-form-label>Email</nz-form-label>
           <nz-form-control>
-            <input nz-input [ngModel]="user?.email" (ngModelChange)="user && (user.email = $event)" placeholder="please enter email" name="email" />
+            <input nz-input [(ngModel)]="user.email" placeholder="please enter email" name="email" />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -25,7 +23,7 @@
         <nz-form-item>
           <nz-form-label>Password</nz-form-label>
           <nz-form-control>
-            <input nz-input [ngModel]="user?.password" (ngModelChange)="user && (user.password = $event)" placeholder="please enter password" name="password" />
+            <input nz-input [(ngModel)]="user.password" placeholder="please enter password" name="password" />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -34,66 +32,7 @@
         <nz-form-item>
           <nz-form-label>Role</nz-form-label>
           <nz-form-control>
-            <nz-select [ngModel]="user?.role" (ngModelChange)="user && (user.role = $event)" nzPlaceHolder="Please choose the role">
-              <nz-option *ngFor="let role of roles" [nzValue]="role" [nzLabel]="role"></nz-option>
-            </nz-select>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-    </div>
-  </form>
-
-  <ng-template #footerTpl>
-    <div style="float: right">
-      <button nz-button style="margin-right: 8px" (click)="close()">Cancel</button>
-      <button nz-button nzType="primary" (click)="editOrAddUser()">Submit</button>
-    </div>
-  </ng-template>
-</nz-drawer>
-<button nz-button nzType="primary" (click)="openAddUser()">Create</button>
-<nz-drawer
-  [nzBodyStyle]="{ overflow: 'auto' }"
-  [nzMaskClosable]="false"
-  [nzWidth]="720"
-  [nzVisible]="visible"
-  nzTitle="{{ title }}"
-  [nzFooter]="footerTpl"
-  (nzOnClose)="close()"
->
-  <form nz-form *nzDrawerContent>
-    <div nz-row [nzGutter]="8">
-      <div nz-col nzSpan="12">
-        <nz-form-item>
-          <nz-form-label>Id</nz-form-label>
-          <nz-form-control>
-            <input nz-input [ngModel]="user?.id" (ngModelChange)="user && (user.id = $event)" placeholder="please enter Id" name="id" />
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-
-      <div nz-col nzSpan="12">
-        <nz-form-item>
-          <nz-form-label>Name</nz-form-label>
-          <nz-form-control>
-            <input nz-input [ngModel]="user?.email" (ngModelChange)="user && (user.email = $event)" placeholder="please enter email" name="email" />
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-
-      <div nz-col nzSpan="12">
-        <nz-form-item>
-          <nz-form-label>Password</nz-form-label>
-          <nz-form-control>
-            <input nz-input [ngModel]="user?.password" (ngModelChange)="user && (user.password = $event)" placeholder="please enter password" name="password" />
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-
-      <div nz-col nzSpan="12">
-        <nz-form-item>
-          <nz-form-label>Role</nz-form-label>
-          <nz-form-control>
-            <nz-select [ngModel]="user?.role" (ngModelChange)="user && (user.role = $event)" nzPlaceHolder="Please choose the role">
+            <nz-select [(ngModel)]="user.role" nzPlaceHolder="Please choose the role">
               <nz-option *ngFor="let role of roles" [nzValue]="role" [nzLabel]="role"></nz-option>
             </nz-select>
           </nz-form-control>

@@ -42,13 +42,11 @@ public class UserController {
                 .createUser(userDto));
     }
 
-    @PutMapping//(value = "/{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto,
-                                      @RequestParam(name = "id") Integer id) throws Exception {
+                                      @PathVariable(name = "id") Integer id) throws Exception {
 
         return ResponseEntity.ok(userService
                 .updateUser(userDto, id));
     }
-
-
 }

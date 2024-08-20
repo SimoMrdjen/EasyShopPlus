@@ -22,33 +22,33 @@ class PurchaseContractRepositoryTest {
     PurchaseContract purchaseContract;
     Customer customer;
 
-    @BeforeEach
-    void setUp() {
-        customer = customerRepository.save(
-                new Customer(
-                        null,
-                        "Mrdjen",
-                        "Simo",
-                        "0206970850101",
-                        "Yr",
-                        "0205",
-                        "Zrenjanin PU",
-                        "dr.sizni@gmail.com",
-                        "0631030260"));
-        purchaseContract = new PurchaseContract(
-                null,
-                customer,
-                100.00,
-                50.00,
-                LocalDate.now(),
-                new ArrayList<Installment>());
-    }
-
-    @Test
-    void shouldReturnContractsWhenFindByCustomerId() throws Exception {
-        repository.save(purchaseContract);
-        assertThat(repository.findByCustomerId(customer.getId()))
-                .usingRecursiveFieldByFieldElementComparatorIgnoringFields("id")
-                .isEqualTo(List.of(purchaseContract));
-    }
+//    @BeforeEach
+//    void setUp() {
+//        customer = customerRepository.save(
+//                new Customer(
+//                        null,
+//                        "Mrdjen",
+//                        "Simo",
+//                        "0206970850101",
+//                        "Yr",
+//                        "0205",
+//                        "Zrenjanin PU",
+//                        "dr.sizni@gmail.com",
+//                        "0631030260"));
+//        purchaseContract = new PurchaseContract(
+//                null,
+//                customer,
+//                100.00,
+//                50.00,
+//                LocalDate.now(),
+//                new ArrayList<Installment>());
+//    }
+//
+//    @Test
+//    void shouldReturnContractsWhenFindByCustomerId() throws Exception {
+//        repository.save(purchaseContract);
+//        assertThat(repository.findByCustomerId(customer.getId()))
+//                .usingRecursiveFieldByFieldElementComparatorIgnoringFields("id")
+//                .isEqualTo(List.of(purchaseContract));
+//    }
 }

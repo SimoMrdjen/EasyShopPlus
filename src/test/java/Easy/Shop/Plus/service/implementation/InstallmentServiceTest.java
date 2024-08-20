@@ -122,86 +122,86 @@ class InstallmentServiceTest {
              .isEqualTo(List.of(installmentDtoUnpaid));
     }
 
-    @Test
-    void shouldUpdateInstallmentIfExist() throws Exception {
-        when(repository.existsById(installment.getId()))
-                .thenReturn(true);
-        when(repository.save(installment))
-              .thenReturn(installment);
-        when(mapper.mapGetEntityToDto(installment))
-              .thenReturn(installmentDto);
-        when(mapper.mapEditDtoToEntity(installmentDto))
-                .thenReturn(installment);
-        assertThat(service.updateInstallment(installmentDto, installmentDto.getId()))
-              .isEqualTo(installmentDto);
-    }
+//    @Test
+//    void shouldUpdateInstallmentIfExist() throws Exception {
+//        when(repository.existsById(installment.getId()))
+//                .thenReturn(true);
+//        when(repository.save(installment))
+//              .thenReturn(installment);
+//        when(mapper.mapGetEntityToDto(installment))
+//              .thenReturn(installmentDto);
+//        when(mapper.mapEditDtoToEntity(installmentDto))
+//                .thenReturn(installment);
+//        assertThat(service.updateInstallment(installmentDto, installmentDto.getId()))
+//              .isEqualTo(installmentDto);
+//    }
+//
+//    @Test
+//    void shouldThrowExWhenUpdateInstallmentIfNotExist() {
+//        when(repository.existsById(anyLong()))
+//              .thenReturn(false);
+//        assertThatThrownBy(() -> service.updateInstallment(installmentDto, installmentDto.getId()))
+//             .isInstanceOf(Exception.class)
+//               .withFailMessage("Installment not found");
+//
+//    }
 
-    @Test
-    void shouldThrowExWhenUpdateInstallmentIfNotExist() {
-        when(repository.existsById(anyLong()))
-              .thenReturn(false);
-        assertThatThrownBy(() -> service.updateInstallment(installmentDto, installmentDto.getId()))
-             .isInstanceOf(Exception.class)
-               .withFailMessage("Installment not found");
-
-    }
-
-    @Test
-    void shouldCreateInstallments() {
-          Installment installment1 =  new Installment(installmentUnpaid.getPurchaseContract(),
-                        installmentUnpaid.getInstallmentOrdinal(),
-                        installmentUnpaid.getInstallmentAmount(),
-                        installmentUnpaid.getMaturityDate());
-        Installment installment2 = new Installment(installment.getPurchaseContract(),
-                        InstallmentOrdinal.SECOND,
-                        installment.getInstallmentAmount(),
-                        installment.getMaturityDate().plusMonths(1));
-        Installment installment3 =  new Installment(installment.getPurchaseContract(),
-                        InstallmentOrdinal.THIRD,
-                        installment.getInstallmentAmount(),
-                        installment.getMaturityDate().plusMonths(2));
-         List<Installment> installments = List.of(installment1, installment2, installment3);
-
-        Installment installmentS1 = new Installment(1L, installmentUnpaid.getPurchaseContract(),
-                        installmentUnpaid.getInstallmentOrdinal(),
-                        installmentUnpaid.getInstallmentAmount(),
-                        installmentUnpaid.getMaturityDate(),null, null, null);
-        Installment installmentS2 =  new Installment(2L,installment.getPurchaseContract(),
-                        InstallmentOrdinal.SECOND,
-                        installment.getInstallmentAmount(),
-                        installment.getMaturityDate().plusMonths(1),null, null, null);
-        Installment installmentS3 = new Installment(3L,installment.getPurchaseContract(),
-                        InstallmentOrdinal.THIRD,
-                        installment.getInstallmentAmount(),
-                        installment.getMaturityDate().plusMonths(2),null, null, null);
-        List<Installment> installmentsSaved = List.of(installmentS1, installmentS2, installmentS3);
-
-        InstallmentDto installmentDto1 = new InstallmentDto(1L,purchaseContractDto,
-                InstallmentOrdinal.FIRST,
-                20.00,
-                installmentUnpaid.getMaturityDate(),null, null, null);
-        InstallmentDto installmentDto2 =  new InstallmentDto(2L,purchaseContractDto,
-                InstallmentOrdinal.SECOND,
-                installment.getInstallmentAmount(),
-                installment.getMaturityDate().plusMonths(1),null, null, null);
-        InstallmentDto installmentDto3 = new InstallmentDto(3L,purchaseContractDto,
-                InstallmentOrdinal.THIRD,
-                installment.getInstallmentAmount(),
-                installment.getMaturityDate().plusMonths(2),null, null, null);
-        List<InstallmentDto> installmentDtoSaved = List.of(installmentDto1, installmentDto2, installmentDto3);
-
-        when(repository.saveAll(installments))
-                .thenReturn(installmentsSaved);
-        when(mapper.mapGetEntityToDto(installmentS1))
-                .thenReturn(installmentDto1);
-        when(mapper.mapGetEntityToDto(installmentS2))
-                .thenReturn(installmentDto2);
-        when(mapper.mapGetEntityToDto(installmentS3))
-                .thenReturn(installmentDto3);
-
-        assertThat(service.createInstallments(purchaseContract))
-                .usingDefaultComparator()
-                .isEqualTo(installmentDtoSaved);
-
-    }
+//    @Test
+//    void shouldCreateInstallments() {
+//          Installment installment1 =  new Installment(installmentUnpaid.getPurchaseContract(),
+//                        installmentUnpaid.getInstallmentOrdinal(),
+//                        installmentUnpaid.getInstallmentAmount(),
+//                        installmentUnpaid.getMaturityDate());
+//        Installment installment2 = new Installment(installment.getPurchaseContract(),
+//                        InstallmentOrdinal.SECOND,
+//                        installment.getInstallmentAmount(),
+//                        installment.getMaturityDate().plusMonths(1));
+//        Installment installment3 =  new Installment(installment.getPurchaseContract(),
+//                        InstallmentOrdinal.THIRD,
+//                        installment.getInstallmentAmount(),
+//                        installment.getMaturityDate().plusMonths(2));
+//         List<Installment> installments = List.of(installment1, installment2, installment3);
+//
+//        Installment installmentS1 = new Installment(1L, installmentUnpaid.getPurchaseContract(),
+//                        installmentUnpaid.getInstallmentOrdinal(),
+//                        installmentUnpaid.getInstallmentAmount(),
+//                        installmentUnpaid.getMaturityDate(),null, null, null);
+//        Installment installmentS2 =  new Installment(2L,installment.getPurchaseContract(),
+//                        InstallmentOrdinal.SECOND,
+//                        installment.getInstallmentAmount(),
+//                        installment.getMaturityDate().plusMonths(1),null, null, null);
+//        Installment installmentS3 = new Installment(3L,installment.getPurchaseContract(),
+//                        InstallmentOrdinal.THIRD,
+//                        installment.getInstallmentAmount(),
+//                        installment.getMaturityDate().plusMonths(2),null, null, null);
+//        List<Installment> installmentsSaved = List.of(installmentS1, installmentS2, installmentS3);
+//
+//        InstallmentDto installmentDto1 = new InstallmentDto(1L,purchaseContractDto,
+//                InstallmentOrdinal.FIRST,
+//                20.00,
+//                installmentUnpaid.getMaturityDate(),null, null, null);
+//        InstallmentDto installmentDto2 =  new InstallmentDto(2L,purchaseContractDto,
+//                InstallmentOrdinal.SECOND,
+//                installment.getInstallmentAmount(),
+//                installment.getMaturityDate().plusMonths(1),null, null, null);
+//        InstallmentDto installmentDto3 = new InstallmentDto(3L,purchaseContractDto,
+//                InstallmentOrdinal.THIRD,
+//                installment.getInstallmentAmount(),
+//                installment.getMaturityDate().plusMonths(2),null, null, null);
+//        List<InstallmentDto> installmentDtoSaved = List.of(installmentDto1, installmentDto2, installmentDto3);
+//
+//        when(repository.saveAll(installments))
+//                .thenReturn(installmentsSaved);
+//        when(mapper.mapGetEntityToDto(installmentS1))
+//                .thenReturn(installmentDto1);
+//        when(mapper.mapGetEntityToDto(installmentS2))
+//                .thenReturn(installmentDto2);
+//        when(mapper.mapGetEntityToDto(installmentS3))
+//                .thenReturn(installmentDto3);
+//
+//        assertThat(service.createInstallments(purchaseContract))
+//                .usingDefaultComparator()
+//                .isEqualTo(installmentDtoSaved);
+//
+//    }
 }

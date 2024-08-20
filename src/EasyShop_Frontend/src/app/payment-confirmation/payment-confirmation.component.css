@@ -1,0 +1,43 @@
+.print-content {
+    font-size: 9pt;
+    line-height: 1.1;
+    text-align: center;
+    width: 70mm;
+    padding: 5mm;
+    box-sizing: border-box;
+  }
+  
+  .print-content h4 {
+    text-align: center;
+    margin-bottom: 5mm;
+  }
+  
+  .print-content p {
+    text-align: center;
+    margin-bottom: 1mm;
+  }
+  
+  .button-container {
+    display: flex;
+    gap: 10px;
+  }
+  
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+    #print-section, #print-section * {
+      visibility: visible;
+    }
+    #print-section {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 70mm;
+      padding: 5mm;
+    }
+    .button-container {
+      display: none;
+    }
+  }
+  

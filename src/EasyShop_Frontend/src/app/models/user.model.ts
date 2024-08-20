@@ -4,12 +4,12 @@ export class User {
   constructor(
     public id?: number,
     public email?: string,
-    public role?: Role,
+    public role = Role.USER,
     public password?: string,
  
   ) {}
 
   get roleString(): string | undefined {
-    return this.role !== undefined ? Role[this.role] : undefined;
+    return this.role;
   }
 }

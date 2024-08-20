@@ -41,4 +41,7 @@ public class PurchaseContractDto {
         this.contractDate = contractDate;
         this.nextInstalmentDate = nextInstalmentDate;
     }
+
+    public PurchaseContractDto(long l, CustomerDto customerDto, double v, double v1, LocalDate now) {
+    }
 }
